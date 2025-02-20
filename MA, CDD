@@ -1,0 +1,3954 @@
+####IMPUTASI MA####
+data=read.delim("clipboard")
+data
+summary(data)
+
+library(imputeTS)
+
+Tavg=na_ma(data$Tavg,k=3,weighting="simple")
+imput_T
+
+RH_avg=na_ma(data$RH_avg,k=3,weighting="simple")
+imput_RH
+
+RR=na_ma(data$RR,k=3,weighting="simple")
+imput_RR
+
+ss=na_ma(data$ss,k=3,weighting="simple")
+imput_ss
+
+imput_ff=na_ma(data$ff_x,k=3,weighting="simple")
+imput_ff
+
+imput_ddd_x=na_ma(data$ddd_x,k=3,weighting="simple")
+imput_ddd_x
+Tanggal=data$Tanggal
+
+Jakut=cbind(Tanggal,Tavg,RH_avg,RR,ss)
+Jakut
+summary(Jakpus)
+
+write.csv(Jakpus,'PythonPusat.csv')
+
+write.csv(Jakut,'PythonUtara.csv')
+
+data1=read.delim("clipboard")
+data1
+summary(data1)
+
+imput2_T=na_ma(data1$Tavg,k=3,weighting="simple")
+imput2_T
+
+imput2_RH=na_ma(data1$RH_avg,k=3,weighting="simple")
+imput2_RH
+
+imput2_RR=na_ma(data1$RR,k=3,weighting="simple")
+imput2_RR
+
+imput2_ss=na_ma(data1$ss,k=3,weighting="simple")
+imput2_ss
+
+imput2_ff=na_ma(data1$ff_x,k=3,weighting="simple")
+imput2_ff
+
+imput2_ddd_x=na_ma(data1$ddd_x,k=3,weighting="simple")
+imput2_ddd_x
+
+tanggal=data1$Tanggal
+
+Jakut=cbind(tanggal,imput2_T,imput2_RH,imput2_RR,imput2_ss,imput2_ff,imput2_ddd_x)
+Jakut
+summary(Jakut)
+
+write.csv(Jakut,'Jakut_R1_Imputasi.csv')
+
+Jakpus=read.delim("clipboard")
+summary(Jakpus)
+Jakpus$tanggal=as.Date(Jakpus$tanggal)
+
+coba=read.delim("clipboard")
+coba
+model=lm(Jumlah.Kasus.DBD~.,data=coba)
+summary(model)
+
+
+
+
+library(dplyr)
+library(lubridate)
+
+# Mengubah data harian menjadi data mingguan
+weekly_data_dplyr <- Jakpus %>%
+  mutate(Week = floor_date(tanggal, unit = "week")) %>%
+  group_by(Week) %>%
+  summarise(Tavg = mean(Tavg))
+
+
+
+# Menampilkan data mingguan
+print("Data Mingguan dengan dplyr:")
+print(weekly_data_dplyr)
+
+
+
+
+####JAKPUS KORELASI####
+jakpus_lag0=read.delim("clipboard")
+jakpus_lag0
+dim(jakpus_lag0)
+
+spearman_lag0=cor(jakpus_lag0,method="spearman")
+spearman_lag0
+
+kendall_lag0=cor(jakpus_lag0,method="kendall")
+kendall_lag0
+
+write.csv(jaksel_lag0,'Jaksel_R1.csv')
+
+#lag 1#
+jakpus_lag1=read.delim("clipboard")
+jakpus_lag1
+
+spearman_lag1=cor(jakpus_lag1,method="spearman")
+spearman_lag1
+
+kendall_lag1=cor(jakpus_lag1,method="kendall")
+kendall_lag1
+
+#lag 2#
+jakpus_lag2=read.delim("clipboard")
+jakpus_lag2
+
+spearman_lag2=cor(jakpus_lag2,method="spearman")
+spearman_lag2
+
+kendall_lag2=cor(jakpus_lag2,method="kendall")
+kendall_lag2
+
+#lag 3#
+jakpus_lag3=read.delim("clipboard")
+jakpus_lag3
+
+spearman_lag3=cor(jakpus_lag3,method="spearman")
+spearman_lag3
+
+kendall_lag3=cor(jakpus_lag3,method="kendall")
+kendall_lag3
+
+#lag 4#
+jakpus_lag4=read.delim("clipboard")
+jakpus_lag4
+
+spearman_lag4=cor(jakpus_lag4,method="spearman")
+spearman_lag4
+
+kendall_lag4=cor(jakpus_lag4,method="kendall")
+kendall_lag4
+
+#lag 5#
+jakpus_lag5=read.delim("clipboard")
+jakpus_lag5
+
+spearman_lag5=cor(jakpus_lag5,method="spearman")
+spearman_lag5
+
+kendall_lag5=cor(jakpus_lag5,method="kendall")
+kendall_lag5
+
+#lag 6#
+jakpus_lag6=read.delim("clipboard")
+jakpus_lag6
+
+spearman_lag6=cor(jakpus_lag6,method="spearman")
+spearman_lag6
+
+kendall_lag6=cor(jakpus_lag6,method="kendall")
+kendall_lag6
+
+#lag 7#
+jakpus_lag7=read.delim("clipboard")
+jakpus_lag7
+
+spearman_lag7=cor(jakpus_lag7,method="spearman")
+spearman_lag7
+
+kendall_lag7=cor(jakpus_lag7,method="kendall")
+kendall_lag7
+
+#lag 8#
+jakpus_lag8=read.delim("clipboard")
+jakpus_lag8
+
+spearman_lag8=cor(jakpus_lag8,method="spearman")
+spearman_lag8
+
+kendall_lag8=cor(jakpus_lag8,method="kendall")
+kendall_lag8
+
+#lag 9#
+jakpus_lag9=read.delim("clipboard")
+jakpus_lag9
+
+spearman_lag9=cor(jakpus_lag9,method="spearman")
+spearman_lag9
+
+kendall_lag9=cor(jakpus_lag9,method="kendall")
+kendall_lag9
+
+#lag 10#
+jakpus_lag10=read.delim("clipboard")
+jakpus_lag10
+
+spearman_lag10=cor(jakpus_lag10,method="spearman")
+spearman_lag10
+
+kendall_lag10=cor(jakpus_lag10,method="kendall")
+kendall_lag10
+
+#lag 11#
+jakpus_lag11=read.delim("clipboard")
+jakpus_lag11
+
+spearman_lag11=cor(jakpus_lag11,method="spearman")
+spearman_lag11
+
+kendall_lag11=cor(jakpus_lag11,method="kendall")
+kendall_lag11
+
+#lag 12#
+jakpus_lag12=read.delim("clipboard")
+jakpus_lag12
+
+spearman_lag12=cor(jakpus_lag12,method="spearman")
+spearman_lag12
+
+kendall_lag12=cor(jakpus_lag12,method="kendall")
+kendall_lag12
+
+#lag 13#
+jakpus_lag13=read.delim("clipboard")
+jakpus_lag13
+
+spearman_lag13=cor(jakpus_lag13,method="spearman")
+spearman_lag13
+
+kendall_lag13=cor(jakpus_lag13,method="kendall")
+kendall_lag13
+
+#lag 14#
+jakpus_lag14=read.delim("clipboard")
+jakpus_lag14
+
+spearman_lag14=cor(jakpus_lag14,method="spearman")
+spearman_lag14
+
+kendall_lag14=cor(jakpus_lag14,method="kendall")
+kendall_lag14
+
+#lag 15#
+jakpus_lag15=read.delim("clipboard")
+jakpus_lag15
+
+spearman_lag15=cor(jakpus_lag15,method="spearman")
+spearman_lag15
+
+kendall_lag15=cor(jakpus_lag15,method="kendall")
+kendall_lag15
+
+#lag 16#
+jakpus_lag16=read.delim("clipboard")
+jakpus_lag16
+
+spearman_lag16=cor(jakpus_lag16,method="spearman")
+spearman_lag16
+
+kendall_lag16=cor(jakpus_lag16,method="kendall")
+kendall_lag16
+
+####JAKUT KORELASI####
+jakut_lag0=read.delim("clipboard")
+jakut_lag0
+
+spearman_lag0=cor(jakut_lag0,method="spearman")
+spearman_lag0
+
+kendall_lag0=cor(jakut_lag0,method="kendall")
+kendall_lag0
+
+#lag 1#
+jakut_lag1=read.delim("clipboard")
+jakut_lag1
+
+spearman_lag1=cor(jakut_lag1,method="spearman")
+spearman_lag1
+
+kendall_lag1=cor(jakut_lag1,method="kendall")
+kendall_lag1
+
+#lag 2#
+jakut_lag2=read.delim("clipboard")
+jakut_lag2
+
+spearman_lag2=cor(jakut_lag2,method="spearman")
+spearman_lag2
+
+kendall_lag2=cor(jakut_lag2,method="kendall")
+kendall_lag2
+
+#lag 3#
+jakut_lag3=read.delim("clipboard")
+jakut_lag3
+
+spearman_lag3=cor(jakut_lag3,method="spearman")
+spearman_lag3
+
+kendall_lag3=cor(jakut_lag3,method="kendall")
+kendall_lag3
+
+#lag 4#
+jakut_lag4=read.delim("clipboard")
+jakut_lag4
+
+spearman_lag4=cor(jakut_lag4,method="spearman")
+spearman_lag4
+
+kendall_lag4=cor(jakut_lag4,method="kendall")
+kendall_lag4
+
+#lag 5#
+jakut_lag5=read.delim("clipboard")
+jakut_lag5
+
+spearman_lag5=cor(jakut_lag5,method="spearman")
+spearman_lag5
+
+kendall_lag5=cor(jakut_lag5,method="kendall")
+kendall_lag5
+
+#lag 6#
+jakut_lag6=read.delim("clipboard")
+jakut_lag6
+
+spearman_lag6=cor(jakut_lag6,method="spearman")
+spearman_lag6
+
+kendall_lag6=cor(jakut_lag6,method="kendall")
+kendall_lag6
+
+#lag 7#
+jakut_lag7=read.delim("clipboard")
+jakut_lag7
+
+spearman_lag7=cor(jakut_lag7,method="spearman")
+spearman_lag7
+
+kendall_lag7=cor(jakut_lag7,method="kendall")
+kendall_lag7
+
+#lag 8#
+jakut_lag8=read.delim("clipboard")
+jakut_lag8
+
+spearman_lag8=cor(jakut_lag8,method="spearman")
+spearman_lag8
+
+kendall_lag8=cor(jakut_lag8,method="kendall")
+kendall_lag8
+
+#lag 9#
+jakut_lag9=read.delim("clipboard")
+jakut_lag9
+
+spearman_lag9=cor(jakut_lag9,method="spearman")
+spearman_lag9
+
+kendall_lag9=cor(jakut_lag9,method="kendall")
+kendall_lag9
+
+#lag 10#
+jakut_lag10=read.delim("clipboard")
+jakut_lag10
+
+spearman_lag10=cor(jakut_lag10,method="spearman")
+spearman_lag10
+
+kendall_lag10=cor(jakut_lag10,method="kendall")
+kendall_lag10
+
+#lag 11#
+jakut_lag11=read.delim("clipboard")
+jakut_lag11
+
+spearman_lag11=cor(jakut_lag11,method="spearman")
+spearman_lag11
+
+kendall_lag11=cor(jakut_lag11,method="kendall")
+kendall_lag11
+
+#lag 12#
+jakut_lag12=read.delim("clipboard")
+jakut_lag12
+
+spearman_lag12=cor(jakut_lag12,method="spearman")
+spearman_lag12
+
+kendall_lag12=cor(jakut_lag12,method="kendall")
+kendall_lag12
+
+#lag 13#
+jakut_lag13=read.delim("clipboard")
+jakut_lag13
+
+spearman_lag13=cor(jakut_lag13,method="spearman")
+spearman_lag13
+
+kendall_lag13=cor(jakut_lag13,method="kendall")
+kendall_lag13
+
+#lag 14#
+jakut_lag14=read.delim("clipboard")
+jakut_lag14
+
+spearman_lag14=cor(jakut_lag14,method="spearman")
+spearman_lag14
+
+kendall_lag14=cor(jakut_lag14,method="kendall")
+kendall_lag14
+
+#lag 15#
+jakut_lag15=read.delim("clipboard")
+jakut_lag15
+
+spearman_lag15=cor(jakut_lag15,method="spearman")
+spearman_lag15
+
+kendall_lag15=cor(jakut_lag15,method="kendall")
+kendall_lag15
+
+jakut_lag0
+write.csv(jakut_lag0,file='Jakut_R1.csv')
+
+#lag 16#
+jakut_lag16=read.delim("clipboard")
+jakut_lag16
+
+spearman_lag16=cor(jakut_lag16,method="spearman")
+spearman_lag16
+
+kendall_lag16=cor(jakut_lag16,method="kendall")
+kendall_lag16
+
+####JAKBAR KORELASI####
+jakbar_lag0=read.delim("clipboard")
+jakbar_lag0
+
+spearman_lag0=cor(jakbar_lag0,method="spearman")
+spearman_lag0
+
+kendall_lag0=cor(jakbar_lag0,method="kendall")
+kendall_lag0
+
+write.csv(jakbar_lag0,file='Jakbar_R1.csv')
+
+#lag 1#
+jakbar_lag1=read.delim("clipboard")
+jakbar_lag1
+
+spearman_lag1=cor(jakbar_lag1,method="spearman")
+spearman_lag1
+
+kendall_lag1=cor(jakbar_lag1,method="kendall")
+kendall_lag1
+
+#lag 2#
+jakbar_lag2=read.delim("clipboard")
+jakbar_lag2
+
+spearman_lag2=cor(jakbar_lag2,method="spearman")
+spearman_lag2
+
+kendall_lag2=cor(jakbar_lag2,method="kendall")
+kendall_lag2
+
+#lag 3#
+jakbar_lag3=read.delim("clipboard")
+jakbar_lag3
+
+spearman_lag3=cor(jakbar_lag3,method="spearman")
+spearman_lag3
+
+kendall_lag3=cor(jakbar_lag3,method="kendall")
+kendall_lag3
+
+#lag 4#
+jakbar_lag4=read.delim("clipboard")
+jakbar_lag4
+
+spearman_lag4=cor(jakbar_lag4,method="spearman")
+spearman_lag4
+
+kendall_lag4=cor(jakbar_lag4,method="kendall")
+kendall_lag4
+
+#lag 5#
+jakbar_lag5=read.delim("clipboard")
+jakbar_lag5
+
+spearman_lag5=cor(jakbar_lag5,method="spearman")
+spearman_lag5
+
+kendall_lag5=cor(jakbar_lag5,method="kendall")
+kendall_lag5
+
+#lag 6#
+jakbar_lag6=read.delim("clipboard")
+jakbar_lag6
+
+spearman_lag6=cor(jakbar_lag6,method="spearman")
+spearman_lag6
+
+kendall_lag6=cor(jakbar_lag6,method="kendall")
+kendall_lag6
+
+#lag 7#
+jakbar_lag7=read.delim("clipboard")
+jakbar_lag7
+
+spearman_lag7=cor(jakbar_lag7,method="spearman")
+spearman_lag7
+
+kendall_lag7=cor(jakbar_lag7,method="kendall")
+kendall_lag7
+
+#lag 8#
+jakbar_lag8=read.delim("clipboard")
+jakbar_lag8
+
+spearman_lag8=cor(jakbar_lag8,method="spearman")
+spearman_lag8
+
+kendall_lag8=cor(jakbar_lag8,method="kendall")
+kendall_lag8
+
+#lag 9#
+jakbar_lag9=read.delim("clipboard")
+jakbar_lag9
+
+spearman_lag9=cor(jakbar_lag9,method="spearman")
+spearman_lag9
+
+kendall_lag9=cor(jakbar_lag9,method="kendall")
+kendall_lag9
+
+#lag 10#
+jakbar_lag10=read.delim("clipboard")
+jakbar_lag10
+
+spearman_lag10=cor(jakbar_lag10,method="spearman")
+spearman_lag10
+
+kendall_lag10=cor(jakbar_lag10,method="kendall")
+kendall_lag10
+
+#lag 11#
+jakbar_lag11=read.delim("clipboard")
+jakbar_lag11
+
+spearman_lag11=cor(jakbar_lag11,method="spearman")
+spearman_lag11
+
+kendall_lag11=cor(jakbar_lag11,method="kendall")
+kendall_lag11
+
+#lag 12#
+jakbar_lag12=read.delim("clipboard")
+jakbar_lag12
+
+spearman_lag12=cor(jakbar_lag12,method="spearman")
+spearman_lag12
+
+kendall_lag12=cor(jakbar_lag12,method="kendall")
+kendall_lag12
+
+#lag 13#
+jakbar_lag13=read.delim("clipboard")
+jakbar_lag13
+
+spearman_lag13=cor(jakbar_lag13,method="spearman")
+spearman_lag13
+
+kendall_lag13=cor(jakbar_lag13,method="kendall")
+kendall_lag13
+
+#lag 14#
+jakbar_lag14=read.delim("clipboard")
+jakbar_lag14
+
+spearman_lag14=cor(jakbar_lag14,method="spearman")
+spearman_lag14
+
+kendall_lag14=cor(jakbar_lag14,method="kendall")
+kendall_lag14
+
+#lag 15#
+jakbar_lag15=read.delim("clipboard")
+jakbar_lag15
+
+spearman_lag15=cor(jakbar_lag15,method="spearman")
+spearman_lag15
+
+kendall_lag15=cor(jakbar_lag15,method="kendall")
+kendall_lag15
+
+#lag 16#
+jakbar_lag16=read.delim("clipboard")
+jakbar_lag16
+
+spearman_lag16=cor(jakbar_lag16,method="spearman")
+spearman_lag16
+
+kendall_lag16=cor(jakbar_lag16,method="kendall")
+kendall_lag16
+####JAKTIM KORELASI####
+jaktim_lag0=read.delim("clipboard")
+jaktim_lag0
+
+spearman_lag0=cor(jaktim_lag0,method="spearman")
+spearman_lag0
+
+kendall_lag0=cor(jaktim_lag0,method="kendall")
+kendall_lag0
+
+#lag 1#
+jaktim_lag1=read.delim("clipboard")
+jaktim_lag1
+
+spearman_lag1=cor(jaktim_lag1,method="spearman")
+spearman_lag1
+
+kendall_lag1=cor(jaktim_lag1,method="kendall")
+kendall_lag1
+
+#lag 2#
+jaktim_lag2=read.delim("clipboard")
+jaktim_lag2
+
+spearman_lag2=cor(jaktim_lag2,method="spearman")
+spearman_lag2
+
+kendall_lag2=cor(jaktim_lag2,method="kendall")
+kendall_lag2
+
+#lag 3#
+jaktim_lag3=read.delim("clipboard")
+jaktim_lag3
+
+spearman_lag3=cor(jaktim_lag3,method="spearman")
+spearman_lag3
+
+kendall_lag3=cor(jaktim_lag3,method="kendall")
+kendall_lag3
+
+#lag 4#
+jaktim_lag4=read.delim("clipboard")
+jaktim_lag4
+
+spearman_lag4=cor(jaktim_lag4,method="spearman")
+spearman_lag4
+
+kendall_lag4=cor(jaktim_lag4,method="kendall")
+kendall_lag4
+
+#lag 5#
+jaktim_lag5=read.delim("clipboard")
+jaktim_lag5
+
+spearman_lag5=cor(jaktim_lag5,method="spearman")
+spearman_lag5
+
+kendall_lag5=cor(jaktim_lag5,method="kendall")
+kendall_lag5
+
+#lag 6#
+jaktim_lag6=read.delim("clipboard")
+jaktim_lag6
+
+spearman_lag6=cor(jaktim_lag6,method="spearman")
+spearman_lag6
+
+kendall_lag6=cor(jaktim_lag6,method="kendall")
+kendall_lag6
+
+#lag 7#
+jaktim_lag7=read.delim("clipboard")
+jaktim_lag7
+
+spearman_lag7=cor(jaktim_lag7,method="spearman")
+spearman_lag7
+
+kendall_lag7=cor(jaktim_lag7,method="kendall")
+kendall_lag7
+
+#lag 8#
+jaktim_lag8=read.delim("clipboard")
+jaktim_lag8
+
+spearman_lag8=cor(jaktim_lag8,method="spearman")
+spearman_lag8
+
+kendall_lag8=cor(jaktim_lag8,method="kendall")
+kendall_lag8
+
+#lag 9#
+jaktim_lag9=read.delim("clipboard")
+jaktim_lag9
+
+spearman_lag9=cor(jaktim_lag9,method="spearman")
+spearman_lag9
+
+kendall_lag9=cor(jaktim_lag9,method="kendall")
+kendall_lag9
+
+#lag 10#
+jaktim_lag10=read.delim("clipboard")
+jaktim_lag10
+
+spearman_lag10=cor(jaktim_lag10,method="spearman")
+spearman_lag10
+
+kendall_lag10=cor(jaktim_lag10,method="kendall")
+kendall_lag10
+
+#lag 11#
+jaktim_lag11=read.delim("clipboard")
+jaktim_lag11
+
+spearman_lag11=cor(jaktim_lag11,method="spearman")
+spearman_lag11
+
+kendall_lag11=cor(jaktim_lag11,method="kendall")
+kendall_lag11
+
+#lag 12#
+jaktim_lag12=read.delim("clipboard")
+jaktim_lag12
+
+spearman_lag12=cor(jaktim_lag12,method="spearman")
+spearman_lag12
+
+kendall_lag12=cor(jaktim_lag12,method="kendall")
+kendall_lag12
+
+#lag 13#
+jaktim_lag13=read.delim("clipboard")
+jaktim_lag13
+
+spearman_lag13=cor(jaktim_lag13,method="spearman")
+spearman_lag13
+
+kendall_lag13=cor(jaktim_lag13,method="kendall")
+kendall_lag13
+
+#lag 14#
+jaktim_lag14=read.delim("clipboard")
+jaktim_lag14
+
+spearman_lag14=cor(jaktim_lag14,method="spearman")
+spearman_lag14
+
+kendall_lag14=cor(jaktim_lag14,method="kendall")
+kendall_lag14
+
+#lag 15#
+jaktim_lag15=read.delim("clipboard")
+jaktim_lag15
+
+spearman_lag15=cor(jaktim_lag15,method="spearman")
+spearman_lag15
+
+kendall_lag15=cor(jaktim_lag15,method="kendall")
+kendall_lag15
+
+#lag 16#
+jaktim_lag16=read.delim("clipboard")
+jaktim_lag16
+
+spearman_lag16=cor(jaktim_lag16,method="spearman")
+spearman_lag16
+
+kendall_lag16=cor(jaktim_lag16,method="kendall")
+kendall_lag16
+
+####JAKSEL KORELASI####
+jaksel_lag0=read.delim("clipboard")
+jaksel_lag0
+
+spearman_lag0=cor(jaksel_lag0,method="spearman")
+spearman_lag0
+
+kendall_lag0=cor(jaksel_lag0,method="kendall")
+kendall_lag0
+
+write.csv(jaksel_lag0,file='Jaksel_R1.csv')
+
+#lag 1#
+jaksel_lag1=read.delim("clipboard")
+jaksel_lag1
+
+spearman_lag1=cor(jaksel_lag1,method="spearman")
+spearman_lag1
+
+kendall_lag1=cor(jaksel_lag1,method="kendall")
+kendall_lag1
+
+#lag 2#
+jaksel_lag2=read.delim("clipboard")
+jaksel_lag2
+
+spearman_lag2=cor(jaksel_lag2,method="spearman")
+spearman_lag2
+
+kendall_lag2=cor(jaksel_lag2,method="kendall")
+kendall_lag2
+
+#lag 3#
+jaksel_lag3=read.delim("clipboard")
+jaksel_lag3
+
+spearman_lag3=cor(jaksel_lag3,method="spearman")
+spearman_lag3
+
+kendall_lag3=cor(jaksel_lag3,method="kendall")
+kendall_lag3
+
+#lag 4#
+jaksel_lag4=read.delim("clipboard")
+jaksel_lag4
+
+spearman_lag4=cor(jaksel_lag4,method="spearman")
+spearman_lag4
+
+kendall_lag4=cor(jaksel_lag4,method="kendall")
+kendall_lag4
+
+#lag 5#
+jaksel_lag5=read.delim("clipboard")
+jaksel_lag5
+
+spearman_lag5=cor(jaksel_lag5,method="spearman")
+spearman_lag5
+
+kendall_lag5=cor(jaksel_lag5,method="kendall")
+kendall_lag5
+
+#lag 6#
+jaksel_lag6=read.delim("clipboard")
+jaksel_lag6
+
+spearman_lag6=cor(jaksel_lag6,method="spearman")
+spearman_lag6
+
+kendall_lag6=cor(jaksel_lag6,method="kendall")
+kendall_lag6
+
+#lag 7#
+jaksel_lag7=read.delim("clipboard")
+jaksel_lag7
+
+spearman_lag7=cor(jaksel_lag7,method="spearman")
+spearman_lag7
+
+kendall_lag7=cor(jaksel_lag7,method="kendall")
+kendall_lag7
+
+#lag 8#
+jaksel_lag8=read.delim("clipboard")
+jaksel_lag8
+
+spearman_lag8=cor(jaksel_lag8,method="spearman")
+spearman_lag8
+
+kendall_lag8=cor(jaksel_lag8,method="kendall")
+kendall_lag8
+
+#lag 9#
+jaksel_lag9=read.delim("clipboard")
+jaksel_lag9
+
+spearman_lag9=cor(jaksel_lag9,method="spearman")
+spearman_lag9
+
+kendall_lag9=cor(jaksel_lag9,method="kendall")
+kendall_lag9
+
+#lag 10#
+jaksel_lag10=read.delim("clipboard")
+jaksel_lag10
+
+spearman_lag10=cor(jaksel_lag10,method="spearman")
+spearman_lag10
+
+kendall_lag10=cor(jaksel_lag10,method="kendall")
+kendall_lag10
+
+#lag 11#
+jaksel_lag11=read.delim("clipboard")
+jaksel_lag11
+
+spearman_lag11=cor(jaksel_lag11,method="spearman")
+spearman_lag11
+
+kendall_lag11=cor(jaksel_lag11,method="kendall")
+kendall_lag11
+
+#lag 12#
+jaksel_lag12=read.delim("clipboard")
+jaksel_lag12
+
+spearman_lag12=cor(jaksel_lag12,method="spearman")
+spearman_lag12
+
+kendall_lag12=cor(jaksel_lag12,method="kendall")
+kendall_lag12
+
+#lag 13#
+jaksel_lag13=read.delim("clipboard")
+jaksel_lag13
+
+spearman_lag13=cor(jaksel_lag13,method="spearman")
+spearman_lag13
+
+kendall_lag13=cor(jaksel_lag13,method="kendall")
+kendall_lag13
+
+#lag 14#
+jaksel_lag14=read.delim("clipboard")
+jaksel_lag14
+
+spearman_lag14=cor(jaksel_lag14,method="spearman")
+spearman_lag14
+
+kendall_lag14=cor(jaksel_lag14,method="kendall")
+kendall_lag14
+
+#lag 15#
+jaksel_lag15=read.delim("clipboard")
+jaksel_lag15
+
+spearman_lag15=cor(jaksel_lag15,method="spearman")
+spearman_lag15
+
+kendall_lag15=cor(jaksel_lag15,method="kendall")
+kendall_lag15
+
+#lag 16#
+jaksel_lag16=read.delim("clipboard")
+jaksel_lag16
+
+spearman_lag16=cor(jaksel_lag16,method="spearman")
+spearman_lag16
+
+kendall_lag16=cor(jaksel_lag16,method="kendall")
+kendall_lag16
+
+####MULTIPLE####
+#multiple ditambah kasus lag 0
+databaru=data.frame(jakbar_lag0$Jumlah.Kasus.DBD)
+coba=jakbar_lag9[1:835,-5:-6]
+tail(coba)
+databaru2=databaru[1:835,]
+baru=cbind(coba,databaru2)
+train_size <- 0.8 # 80% untuk training
+train_index <- round(train_size * nrow(baru))
+# Membagi data berdasarkan urutan waktu
+train_data <- baru[1:train_index, ]   # Data training (80% awal)
+test_data <- baru[(train_index+1):nrow(baru), ]  # Data testing (20% akhir)
+
+library(MASS)
+model=lm(Jumlah.Kasus.DBD~Average.of.Tavg+Average.of.Rhavg+Sum.of.RR+Average.of.ss+Sum.of.pengguna.krl+databaru2, data=train_data)
+summary(model)
+pred=predict(model,test_data)
+# Evaluasi prediksi (misalnya menggunakan Mean Squared Error)
+mse <- mean((test_data$Jumlah.Kasus.DBD - pred)^2)
+mse
+
+# Menghitung R-squared manual
+SS_residual <- sum((test_data$Jumlah.Kasus.DBD - pred)^2) # Residual Sum of Squares
+SS_total <- sum((test_data$Jumlah.Kasus.DBD - mean(test_data$Jumlah.Kasus.DBD))^2) # Total Sum of Squares
+R_squared <- 1 - (SS_residual / SS_total)  # R-squared
+
+# Menampilkan hasil R-squared
+R_squared
+
+# Memastikan ggplot2 terinstal
+install.packages("ggplot2")
+library(ggplot2)
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- fitted(model)
+actual_values <- train_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- pred
+actual_values <- test_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+#multiple ditambah kasus lag 1
+databaru=data.frame(jakbar_lag1$Jumlah.Kasus.DBD)
+coba=jakbar_lag9[1:835,-5:-6]
+databaru2=databaru[1:835,]
+baru=cbind(coba,databaru2)
+train_size <- 0.8 # 80% untuk training
+train_index <- round(train_size * nrow(baru))
+# Membagi data berdasarkan urutan waktu
+train_data <- baru[1:train_index, ]   # Data training (80% awal)
+test_data <- baru[(train_index+1):nrow(baru), ]  # Data testing (20% akhir)
+
+library(MASS)
+model=lm(Jumlah.Kasus.DBD~Average.of.Tavg+Average.of.Rhavg+Sum.of.RR+Average.of.ss+Sum.of.pengguna.krl+databaru2, data=train_data)
+summary(model)
+pred=predict(model,test_data)
+
+# Menghitung R-squared manual
+SS_residual <- sum((test_data$Jumlah.Kasus.DBD - pred)^2) # Residual Sum of Squares
+SS_total <- sum((test_data$Jumlah.Kasus.DBD - mean(test_data$Jumlah.Kasus.DBD))^2) # Total Sum of Squares
+R_squared <- 1 - (SS_residual / SS_total)  # R-squared
+
+# Menampilkan hasil R-squared
+R_squared
+
+# Memastikan ggplot2 terinstal
+install.packages("ggplot2")
+library(ggplot2)
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- fitted(model)
+actual_values <- train_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- pred
+actual_values <- test_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+
+
+
+
+
+
+
+#multiple ditambah kasus lag 4
+databaru=data.frame(jakbar_lag4$Jumlah.Kasus.DBD)
+coba=jakbar_lag9[1:835,-5:-6]
+databaru2=databaru[1:835,]
+baru=cbind(coba,databaru2)
+train_size <- 0.7 # 70% untuk training
+train_index <- round(train_size * nrow(baru))
+# Membagi data berdasarkan urutan waktu
+train_data <- baru[1:train_index, ]   # Data training (80% awal)
+test_data <- baru[(train_index+1):nrow(baru), ]  # Data testing (20% akhir)
+
+library(MASS)
+model=lm(Jumlah.Kasus.DBD~Average.of.Tavg+Average.of.Rhavg+Sum.of.RR+Average.of.ss+Sum.of.pengguna.krl+databaru2, data=train_data)
+summary(model)
+pred=predict(model,test_data)
+
+# Plot untuk menguji linearitas
+plot(model, which = 1)
+
+# Uji Shapiro-Wilk, tidak terpenuhi(Residual tidak berdistribusi normal)
+shapiro.test(residuals(model))
+#uji normalitas residual
+plot(model, which = 2)
+
+# Plot untuk menguji homoskedastisitas
+plot(model, which = 3)
+library(lmtest)
+# Uji Homoskedastisitas Breusch-Pagan, tidak terpenuhi(heteroskedastisitas (varians residual tidak konstan))
+bptest(model)
+
+# Uji Autokorelasi, Tidak terpenuhi (terdapat autokorelasi)
+dwtest(model)
+Box.test(residuals(model), type = "Ljung-Box")
+
+
+# Multikolinearitas Terpenuhi
+library(car)
+vif(model)
+
+
+# Evaluasi prediksi (misalnya menggunakan Mean Squared Error)
+mse <- mean((test_data$Jumlah.Kasus.DBD - pred)^2)
+mse
+
+# Menghitung R-squared manual
+SS_residual <- sum((test_data$Jumlah.Kasus.DBD - pred)^2) # Residual Sum of Squares
+SS_total <- sum((test_data$Jumlah.Kasus.DBD - mean(test_data$Jumlah.Kasus.DBD))^2) # Total Sum of Squares
+R_squared <- 1 - (SS_residual / SS_total)  # R-squared
+
+# Menampilkan hasil R-squared
+R_squared
+
+# Memastikan ggplot2 terinstal
+install.packages("ggplot2")
+library(ggplot2)
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- fitted(model)
+actual_values <- train_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- pred
+actual_values <- test_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+#multiple ditambah kasus lag 2
+databaru=data.frame(jakbar_lag2$Jumlah.Kasus.DBD)
+coba=jakbar_lag9[1:835,-5:-6]
+databaru2=databaru[1:835,]
+baru=cbind(coba,databaru2)
+train_size <- 0.8 # 80% untuk training
+train_index <- round(train_size * nrow(baru))
+# Membagi data berdasarkan urutan waktu
+train_data <- baru[1:train_index, ]   # Data training (80% awal)
+test_data <- baru[(train_index+1):nrow(baru), ]  # Data testing (20% akhir)
+
+library(MASS)
+model=lm(Jumlah.Kasus.DBD~Average.of.Tavg+Average.of.Rhavg+Sum.of.RR+Average.of.ss+Sum.of.pengguna.krl+databaru2, data=train_data)
+summary(model)
+pred=predict(model,test_data)
+# Evaluasi prediksi (misalnya menggunakan Mean Squared Error)
+mse <- mean((test_data$Jumlah.Kasus.DBD - pred)^2)
+mse
+
+# Menghitung R-squared manual
+SS_residual <- sum((test_data$Jumlah.Kasus.DBD - pred)^2) # Residual Sum of Squares
+SS_total <- sum((test_data$Jumlah.Kasus.DBD - mean(test_data$Jumlah.Kasus.DBD))^2) # Total Sum of Squares
+R_squared <- 1 - (SS_residual / SS_total)  # R-squared
+
+# Menampilkan hasil R-squared
+R_squared
+
+# Memastikan ggplot2 terinstal
+install.packages("ggplot2")
+library(ggplot2)
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- fitted(model)
+actual_values <- train_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- pred
+actual_values <- test_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+
+#multiple ditambah kasus lag 2
+databaru=data.frame(jakbar_lag2$Jumlah.Kasus.DBD)
+coba=jakbar_lag9[1:835,-5:-6]
+databaru2=databaru[1:835,]
+baru=cbind(coba,databaru2)
+train_size <- 0.8 # 80% untuk training
+train_index <- round(train_size * nrow(baru))
+# Membagi data berdasarkan urutan waktu
+train_data <- baru[1:train_index, ]   # Data training (80% awal)
+test_data <- baru[(train_index+1):nrow(baru), ]  # Data testing (20% akhir)
+
+library(MASS)
+model=lm(Jumlah.Kasus.DBD~Average.of.Tavg+Average.of.Rhavg+Sum.of.RR+Average.of.ss+Sum.of.pengguna.krl+databaru2, data=train_data)
+summary(model)
+pred=predict(model,test_data)
+# Evaluasi prediksi (misalnya menggunakan Mean Squared Error)
+mse <- mean((test_data$Jumlah.Kasus.DBD - pred)^2)
+mse
+
+# Menghitung R-squared manual
+SS_residual <- sum((test_data$Jumlah.Kasus.DBD - pred)^2) # Residual Sum of Squares
+SS_total <- sum((test_data$Jumlah.Kasus.DBD - mean(test_data$Jumlah.Kasus.DBD))^2) # Total Sum of Squares
+R_squared <- 1 - (SS_residual / SS_total)  # R-squared
+
+# Menampilkan hasil R-squared
+R_squared
+
+# Memastikan ggplot2 terinstal
+install.packages("ggplot2")
+library(ggplot2)
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- fitted(model)
+actual_values <- train_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- pred
+actual_values <- test_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+
+
+#multiple ditambah kasus lag 3
+databaru=data.frame(jakbar_lag3$Jumlah.Kasus.DBD)
+coba=jakbar_lag9[1:835,-5:-6]
+databaru2=databaru[1:835,]
+baru=cbind(coba,databaru2)
+train_size <- 0.8 # 80% untuk training
+train_index <- round(train_size * nrow(baru))
+# Membagi data berdasarkan urutan waktu
+train_data <- baru[1:train_index, ]   # Data training (80% awal)
+test_data <- baru[(train_index+1):nrow(baru), ]  # Data testing (20% akhir)
+
+library(MASS)
+model=lm(Jumlah.Kasus.DBD~Average.of.Tavg+Average.of.Rhavg+Sum.of.RR+Average.of.ss+Sum.of.pengguna.krl+databaru2, data=train_data)
+summary(model)
+pred=predict(model,test_data)
+# Evaluasi prediksi (misalnya menggunakan Mean Squared Error)
+mse <- mean((test_data$Jumlah.Kasus.DBD - pred)^2)
+mse
+
+# Menghitung R-squared manual
+SS_residual <- sum((test_data$Jumlah.Kasus.DBD - pred)^2) # Residual Sum of Squares
+SS_total <- sum((test_data$Jumlah.Kasus.DBD - mean(test_data$Jumlah.Kasus.DBD))^2) # Total Sum of Squares
+R_squared <- 1 - (SS_residual / SS_total)  # R-squared
+
+# Menampilkan hasil R-squared
+R_squared
+
+# Memastikan ggplot2 terinstal
+install.packages("ggplot2")
+library(ggplot2)
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- fitted(model)
+actual_values <- train_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- pred
+actual_values <- test_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+
+#multiple ditambah kasus lag 5
+databaru=data.frame(jakbar_lag5$Jumlah.Kasus.DBD)
+coba=jakbar_lag9[1:835,-5:-6]
+databaru2=databaru[1:835,]
+baru=cbind(coba,databaru2)
+train_size <- 0.8 # 80% untuk training
+train_index <- round(train_size * nrow(baru))
+# Membagi data berdasarkan urutan waktu
+train_data <- baru[1:train_index, ]   # Data training (80% awal)
+test_data <- baru[(train_index+1):nrow(baru), ]  # Data testing (20% akhir)
+
+library(MASS)
+model=lm(Jumlah.Kasus.DBD~Average.of.Tavg+Average.of.Rhavg+Sum.of.RR+Average.of.ss+Sum.of.pengguna.krl+databaru2, data=train_data)
+summary(model)
+pred=predict(model,test_data)
+# Evaluasi prediksi (misalnya menggunakan Mean Squared Error)
+mse <- mean((test_data$Jumlah.Kasus.DBD - pred)^2)
+mse
+
+# Menghitung R-squared manual
+SS_residual <- sum((test_data$Jumlah.Kasus.DBD - pred)^2) # Residual Sum of Squares
+SS_total <- sum((test_data$Jumlah.Kasus.DBD - mean(test_data$Jumlah.Kasus.DBD))^2) # Total Sum of Squares
+R_squared <- 1 - (SS_residual / SS_total)  # R-squared
+
+# Menampilkan hasil R-squared
+R_squared
+
+# Memastikan ggplot2 terinstal
+install.packages("ggplot2")
+library(ggplot2)
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- fitted(model)
+actual_values <- train_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- pred
+actual_values <- test_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+#multiple ditambah kasus lag 6
+databaru=data.frame(jakbar_lag6$Jumlah.Kasus.DBD)
+coba=jakbar_lag9[1:835,-5:-6]
+databaru2=databaru[1:835,]
+baru=cbind(coba,databaru2)
+train_size <- 0.8 # 80% untuk training
+train_index <- round(train_size * nrow(baru))
+# Membagi data berdasarkan urutan waktu
+train_data <- baru[1:train_index, ]   # Data training (80% awal)
+test_data <- baru[(train_index+1):nrow(baru), ]  # Data testing (20% akhir)
+
+library(MASS)
+model=lm(Jumlah.Kasus.DBD~Average.of.Tavg+Average.of.Rhavg+Sum.of.RR+Average.of.ss+Sum.of.pengguna.krl+databaru2, data=train_data)
+summary(model)
+pred=predict(model,test_data)
+# Evaluasi prediksi (misalnya menggunakan Mean Squared Error)
+mse <- mean((test_data$Jumlah.Kasus.DBD - pred)^2)
+mse
+
+# Menghitung R-squared manual
+SS_residual <- sum((test_data$Jumlah.Kasus.DBD - pred)^2) # Residual Sum of Squares
+SS_total <- sum((test_data$Jumlah.Kasus.DBD - mean(test_data$Jumlah.Kasus.DBD))^2) # Total Sum of Squares
+R_squared <- 1 - (SS_residual / SS_total)  # R-squared
+
+# Menampilkan hasil R-squared
+R_squared
+
+# Memastikan ggplot2 terinstal
+install.packages("ggplot2")
+library(ggplot2)
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- fitted(model)
+actual_values <- train_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+
+# Mengambil nilai fitted dan nilai aktual
+fitted_values <- pred
+actual_values <- test_data$Jumlah.Kasus.DBD
+
+# Membuat dataframe untuk grafik
+grafik_data <- data.frame(
+  Actual = actual_values,
+  Fitted = fitted_values,
+  Index = seq_along(actual_values)  # Indeks untuk sumbu x
+)
+
+# Membuat grafik
+ggplot(grafik_data, aes(x = Index) ) +
+  geom_line(aes(y = Actual, color = "Actual"), size = 1) +
+  geom_line(aes(y = Fitted, color = "Fitted"), size = 1) +
+  labs(title = "Nilai Aktual vs Fitted Values",
+       x = "Index",
+       y = "Jumlah Kasus DBD") +
+  scale_color_manual(values = c("Actual" = "blue", "Fitted" = "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+####MULTIPLE TANPA KASUS TAMBAHAN####
+model1=lm(Jumlah.Kasus.DBD~Average.of.Tavg+Average.of.Rhavg+Sum.of.RR+Average.of.ss+Sum.of.pengguna.krl, data=jakbar_lag9)
+summary(model1)
+
+####KORELASI AUTO JAKBAR####
+install.packages("openxlsx")
+library(openxlsx)
+dim(data)
+
+data = read.xlsx("D:/Tugas Galih SMT 6/Bismillah BRIN/Data/Jakbar_R1.xlsx")
+data = data[,c(1,10,3,4,5,6,9)]
+
+
+# Buat Fungsi Korelasi dengan Penyesuaian Metode
+calculate_lag_correlation <- function(data, Y_index, max_lag, method = "spearman") {
+  # ambil dimensi
+  d <- dim(data)
+  n <- Y_index
+  # Buat Ruang/Matriks Kosong
+  M <- matrix(0, nrow = max_lag + 1, ncol = d[n] - n, 
+              dimnames = list(paste0("Lag_", 0:max_lag), colnames(data)[-c(1, Y_index)]))
+  
+  # Fungsi Hitung Korelasi Pada Lag tertentu
+  lag_correlation <- function(x, y, max_lag, method) {
+    sapply(0:max_lag, function(lag) {
+      if (lag == 0) {
+        return(cor(x, y, method = method))
+      } else {
+        return(cor(head(x, -lag), tail(y, -lag), method = method))
+      }
+    })
+  }
+  
+  # Looping Korelasi
+  for (j in 1:(d[n] - n)) {
+    M[, j] <- lag_correlation(data[, j + n], data[, Y_index], max_lag, method)
+  }
+  return(M)
+}
+
+calculate_lag_correlation(data, 2, 16, "spearman")
+
+#output hasil sekalian di absolutekan
+abs_corr <- as.data.frame(calculate_lag_correlation(data, 2, 16, "spearman"))
+max_lag = 16
+abs_corr$Lag <- 0:max_lag
+
+max(abs_corr$Average.of.Tavg)
+max(abs_corr$Average.of.Rhavg)
+max(abs_corr$Sum.of.RR)
+max(abs_corr$Average.of.ss)
+max(abs_corr$Sum.of.pengguna.krl)
+
+#mengambil nilai data setiap variabel
+Lag = abs_corr$Lag;Lag
+Temp = abs_corr$Average.of.Tavg
+Hum = abs_corr$Average.of.Rhavg
+RR = abs_corr$Sum.of.RR
+SS = abs_corr$Average.of.ss
+KRL = abs_corr$Sum.of.pengguna.krl
+
+#mendefinisikan ulang data untuk data frame yang memanjang (tabulasi ulang)
+correlation <- array(c(Temp, Hum, RR, SS, KRL))
+correlation
+Variable <- gl(5, 17, 85)
+levels(Variable) <- c("Temperature", "Relative Humidity", 
+                      "Rainfall", "Sunshine", "KRL");Variable
+Lag <- gl(17, 1, 85) 
+levels(Lag) <- c(0:16);Lag
+
+df <- data.frame(Lag, Variable, correlation)
+
+
+# library(reshape2)
+# df <- melt(abs_corr, id.vars = "Lag", variable.name = "Variabel", value.name = "Correlation")
+# df
+
+
+###plot
+library(ggplot2)
+ggplot(df, aes(x=Lag, y = correlation, color = Variable, group = Variable))+
+  geom_line() +
+  geom_point()+
+  labs(title = "Correlation vs Lag Based on Variable",
+       x= "Lag",
+       y= "correlation")+
+  theme_minimal()+
+  theme(legend.title = element_blank())
+
+###plot
+library(ggplot2)
+ggplot(df, aes(x=Lag, y = correlation, color = Variable, group = Variable))+
+  geom_line() +
+  geom_point()+
+  labs(title = "Correlation vs Lag Based on Variable",
+       x= "Lag",
+       y= "correlation")+
+  theme_minimal()+
+  theme(legend.title = element_blank())
+
+#### # Tentukan lag terbaik dari hasil korelasi:
+lag_temp <- 8  
+lag_humidity <- 9 
+lag_rainfall <- 10 
+lag_sunshine <- 9
+lag_krl <- 13    
+
+shift_data <- function(x, lag) {
+  if (lag == 0) {
+    return(x)
+  } else {
+    return(c(tail(x, -lag),rep(NA, lag)))
+  }
+}
+
+# Geser variabel sesuai dengan lag terbaik
+
+data$Temp_lagged <- shift_data(data$Average.of.Tavg, lag_temp)
+data$Humidity_lagged <- shift_data(data$Average.of.Rhavg, lag_humidity)
+data$Rainfall_lagged <- shift_data(data$Sum.of.RR, lag_rainfall)
+data$Sunshine_lagged <- shift_data(data$Average.of.ss, lag_sunshine)
+data$Krl_lagged <- shift_data(data$Sum.of.pengguna.krl, lag_krl)
+
+data
+
+data_shift <- data[,c(1,2,8:12)]
+data_shift
+
+length(data_shift$krl_lagged)
+
+
+head(data_shift)
+tail(data_shift, 15)
+
+
+
+####COBA LAG####
+generate_lag_matrices <- function(x, y, max_lag) {
+  # List untuk menyimpan matriks setiap lag
+  lag_matrices <- list()
+  
+  # Gabungkan x dan y menjadi data frame awal
+  data <- data.frame(x = x, y = y)
+  
+  for (lag in 0:max_lag) {
+    lag_data <- data
+    
+    if (lag > 0) {
+      # Geser data sesuai dengan nilai lag
+      lag_data$x <- c(rep(NA, lag), head(x, -lag))
+      lag_data$y <- c(rep(NA, lag), tail(y, -lag))
+    }
+    
+    # Hapus baris NA untuk mendapatkan matriks yang sama dengan contoh
+    lag_data <- na.omit(lag_data)
+    lag_matrices[[paste("lag", lag)]] <- lag_data  # Simpan ke dalam list dengan nama "lag X"
+  }
+  
+  return(lag_matrices)
+}
+
+# Contoh data
+x <- c(12, 19, 14, 15, 9)
+y <- c(25, 27, 26, 19, 16)
+
+# Gunakan fungsi untuk menghasilkan matriks lag 0, 1, dan 2
+lag_matrices <- generate_lag_matrices(x, y, max_lag = 2)
+
+# Tampilkan hasil
+lag_matrices
+
+
+  
+shift_data <- function(x, y, max_lag) {
+
+  lag_matriks <- list()
+  
+  data <- data.frame(x = x, y = y)
+  
+  for (lag in 0:max_lag) {
+    lag_data_x_y <- data
+    if (lag > 0) {
+      lag_data_x_y$x <- c(rep(NA, lag), head(x, -lag))
+      lag_data_x_y$y <- c(rep(NA, lag), tail(y, -lag))
+    }
+    lag_data_x_y <- na.omit(lag_data_x_y)
+    lag_matriks[[paste("lag_x_to_y", lag)]] <- lag_data_x_y 
+  }
+  
+  for (lag in 0:max_lag) {
+    lag_data_y_x <- data
+    if (lag > 0) {
+      lag_data_y_x$y <- c(rep(NA, lag), head(y, -lag))
+      lag_data_y_x$x <- c(rep(NA, lag), tail(x, -lag))
+    }
+    lag_data_y_x <- na.omit(lag_data_y_x)
+    lag_matriks[[paste("lag_y_to_x", lag)]] <- lag_data_y_x  
+  }
+  
+  return(lag_matriks)
+}
+
+
+x <- c(12, 19, 14, 15, 9)
+y <- c(25, 27, 26, 19, 16)
+
+jakut_lag0
+dim(jakut_lag0)
+dim(jakpus_lag0)
+
+lag_matriks <- shift_data(jakut_lag0[1:835,]$Jumlah.kasus.dbd, jakpus_lag0[1:835,]$Jumlah.Kasus.DBD, max_lag = 8)
+
+lag_matriks
+
+dim(jaksel_lag0)
+lag_matriks_ub = shift_data(jakut_lag0[1:835,]$Jumlah.kasus.dbd,jakbar_lag0$Jumlah.Kasus.DBD, max_lag = 8)
+lag_matriks_ut = shift_data(jakut_lag0[1:835,]$Jumlah.kasus.dbd,jaktim_lag0[1:835,]$Jumlah.Kasus.DBD, max_lag = 8)
+lag_matriks_us = shift_data(jakut_lag0[1:835,]$Jumlah.kasus.dbd,jaksel_lag0[1:835,]$Jumlah.Kasus.DBD, max_lag = 8)
+lag_matriks_pb = shift_data(jakpus_lag0[1:835,]$Jumlah.Kasus.DBD,jakbar_lag0$Jumlah.Kasus.DBD, max_lag = 8)
+lag_matriks_bp = shift_data(jakbar_lag0$Jumlah.Kasus.DBD,jakpus_lag0$Jumlah.Kasus.DBD,max_lag = 8)
+lag_matriks_pt = shift_data(jakpus_lag0[1:835,]$Jumlah.Kasus.DBD,jaktim_lag0[1:835,]$Jumlah.Kasus.DBD, max_lag = 8)
+lag_matriks_tp = shift_data(jaktim_lag0[1:835,]$Jumlah.Kasus.DBD,jakpus_lag0$Jumlah.Kasus.DBD,max_lag = 8)
+lag_matriks_ps = shift_data(jakpus_lag0[1:835,]$Jumlah.Kasus.DBD,jaksel_lag0[1:835,]$Jumlah.Kasus.DBD, max_lag = 8)
+lag_matriks_bt = shift_data(jakbar_lag0$Jumlah.Kasus.DBD,jaktim_lag0[1:835,]$Jumlah.Kasus.DBD, max_lag = 8)
+lag_matriks_bs = shift_data(jakbar_lag0$Jumlah.Kasus.DBD,jaksel_lag0[1:835,]$Jumlah.Kasus.DBD, max_lag = 8)
+lag_matriks_ts = shift_data(jaktim_lag0[1:835,]$Jumlah.Kasus.DBD,jaksel_lag0[1:835,]$Jumlah.Kasus.DBD, max_lag = 8)
+
+####COPULA####
+Empiric.df<-function(data,x) {
+  data<-sort(data)
+  if(min(data)>0) 
+    a<-0 
+  else a<-floor(min(data)/100)*100
+  if(max(data)<0) 
+    b<-0 
+  else b<-ceiling(max(data)/100)*100
+  for(j in 1:length(x)) {
+    if(x[j]<a) 
+      x[j]<-a
+    if(x[j]>b) 
+      x[j]<-b
+  }
+  data<-c(a,data,b)
+  n<-length(data)
+  p<-c(rep(0,(n-1)))
+  q<-c(rep(0,(n-1)))
+  for(i in 2:(n-2)) {
+    p[i]<-(data[i]+data[i+1])/2
+    q[i]<-(i-1)/(n-2)
+  }
+  p[1]<-a
+  p[n-1]<-b
+  q[1]<-0
+  q[n-1]<-1
+  approx(p,q,xout=c(x))$y
+}
+
+## Transform original data to U(0,1)
+Emp.index <- data.frame(u = Empiric.df(data$x,data$x),
+                        v = Empiric.df(data$y,data$y))
+summary(Emp.index)
+
+data
+x=lag_matriks$`lag_x_to_y 0`[,1]
+y=lag_matriks$`lag_x_to_y 0`[,2]
+x=as.numeric(unlist(x))
+y=as.numeric(unlist(y))
+xy=data.frame(x,y)
+coba1=auto.arima(x)
+coba2=auto.arima(y)
+data=as.data.frame(cbind(coba1$fitted,coba2$fitted))
+colnames(data)=c('x','y')
+
+data = xy + runif(length(xy), min = -0.015, max = 0.053)
+
+
+cdf_x=ecdf(data$x)
+cdf_y=ecdf(data$y)
+
+u <- cdf_x(data$x)
+v <- cdf_y(data$y)
+
+u
+v
+
+Emp.index=data.frame(u,v)
+Emp.index
+unique(Emp.index)
+
+jbtojp0=data.frame(x,y)
+write.csv(jbtojp0,'Jakbar to Jakpus.csv')
+
+install.packages("copula")
+install.packages("gcmr")
+install.packages("statmod")
+library(copula)
+library(gcmr)
+library(statmod)
+library(forecast)
+library(lmtest)
+
+
+unique
+
+##CDD##
+#V->U
+coba=read.delim("clipboard")
+coba
+summary(Emp.index)
+head(Emp.index)
+r12=gcmr(uuu ~ vvv, data=uv, marginal = beta.marg(link="logit"),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er12=exp(r12$estimate[1] + uv$vvv * r12$estimate[2])/
+  (1 + exp(r12$estimate[1] + uv$vvv * r12$estimate[2]))
+
+vtou_rho2=var(Er12)/var(uv$uuu)
+
+#U->V
+r21=gcmr(vvv~uuu, data=uv, marginal = beta.marg(link='logit'),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er21=exp(r21$estimate[1] + uv$uuu * r21$estimate[2])/
+  (1 + exp(r21$estimate[1] + uv$uuu * r21$estimate[2]))
+
+utov_rho2=var(Er21)/var(uv$vvv)
+
+rslt=data.frame(vtou_rho2,utov_rho2)
+rslt
+
+
+mean(abs((var(Er21) - var(uv$vvv)) / var(Er21))) * 100
+
+
+
+
+####fitdist####
+#install.packages('fitdistrplus')
+library(fitdistrplus)
+
+# Contoh: Fit distribusi normal
+data1=as.data.frame(lag_matriks$`lag_x_to_y 0`)
+hist(data1$y)
+
+fit_normal <- fitdist(data1$y, "norm")
+fit_exp <- fitdist(data1$y, "exp")
+fit_lognorm <- fitdist(data1$y, "lnorm")
+fit_gamma <- fitdist(data1$y, "gamma")
+fit_weibull <- fitdist(data1$y, "weibull")
+fit_poisson <- fitdist(data1$y, "pois")
+
+
+
+# Membandingkan AIC antar distribusi
+fit_normal$aic
+fit_exp$aic
+fit_poisson$aic
+plot(fit_normal)
+plot(fit_exp)
+plot(fit_poisson)
+fit_exp$data
+gofstat(list(fit_normal, fit_exp))
+
+?fitdist
+
+
+####Coba fitdist####
+library(fitdistrplus)
+
+# Function to find the best fit discrete distribution based on AIC and show parameter estimates
+find_best_distribution <- function(data) {
+  # Define the list of discrete distributions to check
+  distributions <- c("norm", "lnorm", "exp", "gamma", "weibull", "logis","pois", "nbinom")
+  
+  # Initialize a dataframe to store AIC values and parameters
+  results <- data.frame(Distribution = character(), AIC = numeric(), Parameters = character(), stringsAsFactors = FALSE)
+  
+  # Loop through each distribution
+  for (dist in distributions) {
+    # Try fitting the distribution and catching any errors
+    tryCatch({
+      fit <- fitdist(data, dist)
+      # Extract AIC and parameter estimates
+      aic <- AIC(fit)
+      params <- paste(names(fit$estimate), round(fit$estimate, 4), sep = " = ", collapse = ", ")
+      
+      # Store the results in the dataframe
+      results <- rbind(results, data.frame(Distribution = dist, AIC = aic, Parameters = params, stringsAsFactors = FALSE))
+    }, error = function(e) {
+      message(paste("Error with", dist, "distribution:", e$message))
+    })
+  }
+  
+  # Find the distribution with the minimum AIC
+  best_fit <- results[which.min(results$AIC), ]
+  
+  # Print the results
+  print(results)
+  cat("Best distribution based on AIC:\n")
+  print(best_fit)
+  
+  # Return the best distribution with parameters
+  return(best_fit)
+}
+
+
+
+# Example usage with some sample data
+best_dist <- find_best_distribution(lag_matriks$`lag_x_to_y 0`[,1])
+best_dist <- find_best_distribution(lag_matriks$`lag_x_to_y 0`[,2])
+
+best_dist <- find_best_distribution(lag_matriks$`lag_x_to_y 1`[,1])
+best_dist <- find_best_distribution(lag_matriks$`lag_x_to_y 1`[,2])
+
+best_dist <- find_best_distribution(lag_matriks$`lag_x_to_y 2`[,1])
+best_dist <- find_best_distribution(lag_matriks$`lag_x_to_y 2`[,2])
+
+best_dist <- find_best_distribution(lag_matriks$`lag_x_to_y 3`[,1])
+best_dist <- find_best_distribution(lag_matriks$`lag_x_to_y 3`[,2])
+
+best_dist <- find_best_distribution(lag_matriks$`lag_x_to_y 4`[,1])
+best_dist <- find_best_distribution(lag_matriks$`lag_x_to_y 4`[,2])
+
+
+?pexp
+
+uu=pexp(lag_matriks$`lag_x_to_y 0`[,1],rate=0.0233)
+vv=pexp(lag_matriks$`lag_x_to_y 0`[,2],rate=0.0467)
+
+?pexp
+
+Emp.index=data.frame(uu,vv)
+
+hist(lag_matriks$`lag_x_to_y 0`[,1])
+
+hist(dexp(lag_matriks$`lag_x_to_y 0`[,1]))
+summary(dexp(lag_matriks$`lag_x_to_y 0`[,1]))
+
+line(dexp(lag_matriks$`lag_x_to_y 0`[,1]))
+
+# Menghitung CDF untuk setiap nilai x
+u <- pexp(lag_matriks$`lag_x_to_y 0`[,1], rate = 0.0233)
+
+par(mfrow = c(1,2))
+plot(lag_matriks$`lag_x_to_y 0`[,1], cdf_values, type = "l", col = "blue", lwd = 2,
+     main = "CDF dari Distribusi Eksponensial",
+     xlab = "x", ylab = "F(x) - CDF")
+
+
+
+#cdf 1-e^(-lambda*x)
+u <- pexp(lag_matriks$`lag_x_to_y 0`[,1], rate=0.0233)
+u <- 1 - exp(-0.0233 * lag_matriks$`lag_x_to_y 0`[,1])
+
+x=c(0:221)
+min(lag_matriks$`lag_x_to_y 0`[,1])
+max(lag_matriks$`lag_x_to_y 0`[,1])
+exp(-x)
+
+u <- 1 - exp(-0.0233 * x)
+
+plot(lag_matriks$`lag_x_to_y 0`[,1], cdf_values_manual, type = "l", col = "blue", lwd = 2,
+     main = "CDF Distribusi Eksponensial",
+     xlab = "x", ylab = "F(x) - CDF")
+
+
+pdf_values_manual <- 0.0233 * exp(-0.0233 * lag_matriks$`lag_x_to_y 0`[,1])
+plot(lag_matriks$`lag_x_to_y 0`[,1], pdf_values_manual, type = "l", col = "red", lwd = 2,
+     main = "PDF Distribusi Eksponensial",
+     xlab = "x", ylab = "f(x) - PDF")
+
+
+unique(Emp.index$u)
+unique(Emp.index$v)
+
+
+
+v <- 1 - exp(-0.0467 * lag_matriks$`lag_x_to_y 0`[,2])
+v
+
+Emp.index=data.frame(u,v)
+head(Emp.index)
+
+
+?gcmr
+
+####Unique####
+# Load the necessary library
+library(dplyr)
+
+# Sample data
+df <- data.frame(
+  x = c(15, 23, 41, 17, 15, 35),
+  y = c(47, 29, 10, 30, 13, 29)
+)
+
+replace_with_median_fast <- function(data) {
+  # Kelompokkan berdasarkan pasangan (x, y) yang unik
+  data <- data %>%
+    group_by(x, y) %>%
+    summarise(count = n(), .groups = "drop") %>%
+    arrange(x, y)
+  
+  # Gabungkan nilai x dan y duplikat dengan median untuk memastikan pasangan unik
+  data <- data %>%
+    group_by(x) %>%
+    mutate(y = ifelse(n() > 1, median(y), y)) %>%
+    ungroup() %>%
+    group_by(y) %>%
+    mutate(x = ifelse(n() > 1, median(x), x)) %>%
+    ungroup() %>%
+    distinct(x, y, .keep_all = TRUE)  # Hapus pasangan yang terduplikasi
+  
+  return(data)
+}
+
+## Select two cities and compute COPULA DIRECTIONAL DEPENDENCE
+data <- data.frame(u = jakut_lag0[1:835,]$Jumlah.kasus.dbd, v = jakpus_lag0$Jumlah.Kasus.DBD)
+data <- data.frame(u = lag_matriks$`lag_x_to_y 0`[,1], v = lag_matriks$`lag_x_to_y 0`[,2])
+data <- data.frame(u = lag_matriks$`lag_x_to_y 1`[,1], v = lag_matriks$`lag_x_to_y 1`[,2])
+data <- data.frame(u = lag_matriks_ub$`lag_x_to_y 0`[,1], v = lag_matriks_ub$`lag_x_to_y 0`[,2])
+data <- data.frame(u = lag_matriks_ub$`lag_x_to_y 1`[,1], v = lag_matriks_ub$`lag_x_to_y 1`[,2])
+data <- data.frame(u = lag_matriks_ub$`lag_y_to_x 1`[,1], v = lag_matriks_ub$`lag_y_to_x 1`[,2])
+data <- data.frame(u = lag_matriks_us$`lag_x_to_y 0`[,1], v = lag_matriks_us$`lag_x_to_y 0`[,2])
+library(dplyr)
+
+# Step 1: Replace X values by median for each group in Y
+data <- data %>%
+  group_by(v) %>%
+  mutate(u = ifelse(n() > 1, median(u), u)) %>%
+  ungroup()
+
+# Step 2: Replace Y values by median for each group in X
+data <- data %>%
+  group_by(u) %>%
+  mutate(v = ifelse(n() > 1, median(v), v)) %>%
+  ungroup()
+
+# Step 3: Remove duplicates to keep each pair only once
+data <- data %>%
+  distinct()
+
+# View the modified data frame
+data <- as.data.frame(data)
+print(data)
+
+## Transform data to uniform d.f. through its empirical d.f.
+Empiric.df<-function(data,x) {
+  data<-sort(data)
+  if(min(data)>0) 
+    a<-0 
+  else a<-floor(min(data)/100)*100
+  if(max(data)<0) 
+    b<-0 
+  else b<-ceiling(max(data)/100)*100
+  for(j in 1:length(x)) {
+    if(x[j]<a) 
+      x[j]<-a
+    if(x[j]>b) 
+      x[j]<-b
+  }
+  data<-c(a,data,b)
+  n<-length(data)
+  p<-c(rep(0,(n-1)))
+  q<-c(rep(0,(n-1)))
+  for(i in 2:(n-2)) {
+    p[i]<-(data[i]+data[i+1])/2
+    q[i]<-(i-1)/(n-2)
+  }
+  p[1]<-a
+  p[n-1]<-b
+  q[1]<-0
+  q[n-1]<-1
+  approx(p,q,xout=c(x))$y
+}
+
+## Transform original data to U(0,1)
+Emp.index <- data.frame(u = Empiric.df(data[,1], data[,1]),
+                        v = Empiric.df(data[,2], data[,2]))
+
+
+# Function to replace duplicate pairs with median values
+replace_with_median <- function(data) {
+  # Ganti nilai di kolom y berdasarkan duplikat di kolom x
+  data <- data %>%
+    group_by(x) %>%
+    mutate(y = ifelse(n() > 1, median(y), y)) %>%
+    ungroup()
+  
+  #Ganti nilai di kolom x berdasarkan duplikat di kolom y
+  data <- data %>%
+    group_by(y) %>%
+    mutate(x = ifelse(n() > 1, median(x), x)) %>%
+    ungroup()
+  
+  return(data)
+}
+
+df <- replace_with_median(df)
+print(df)
+
+hehe <- replace_with_median(lag_matriks$`lag_x_to_y 0`)
+
+View(hehe)
+cor(hehe)
+
+find_best_distribution(hehe$x)
+hist(hehe$x)
+find_best_distribution(hehe$y)
+hist(hehe$y)
+
+uuu=pexp(hehe$x,rate=0.024)
+vvv=pexp(hehe$y,rate=0.0487)
+uv=data.frame(uuu,vvv)
+
+
+library(dplyr)
+
+df <- data.frame(
+  x = c(15, 23, 41, 17, 15, 35),
+  y = c(47, 29, 10, 30, 13, 29)
+)
+
+replace_with_median_unique <- function(data) {
+  #Ganti nilai di kolom y berdasarkan duplikat di kolom x
+  data <- data %>%
+    group_by(x) %>%
+    mutate(y = ifelse(n() > 1, median(y), y)) %>%
+    ungroup()
+  
+  #Ganti nilai di kolom x berdasarkan duplikat di kolom y
+  data <- data %>%
+    group_by(y) %>%
+    mutate(x = ifelse(n() > 1, median(x), x)) %>%
+    ungroup()
+  
+  #Hapus baris duplikat
+  data <- data %>%
+    distinct(x, y, .keep_all = TRUE)
+  
+  return(data)
+}
+
+df <- replace_with_median_unique(df)
+print(df)
+
+hihi=replace_with_median_unique(lag_matriks$`lag_x_to_y 0`)
+hihi
+
+find_best_distribution(hehe$x)
+find_best_distribution(hehe$y)
+uuu=pgamma(hehe$x,shape=1.186,rate=0.0285)
+vvv=plnorm(hehe$y,meanlog=2.5218,sdlog=1.0728)
+uv=data.frame(uuu,vvv)
+
+
+hist(lag_matriks$`lag_x_to_y 0`[,1])
+hist(lag_matriks$`lag_x_to_y 0`[,2])
+
+hist(hehe$x)
+hist(hehe$y)
+
+write.csv(hehe,'pppppp.csv')
+print(hehe,n=100)
+#V->U
+r12=gcmr(u ~ v, data=Emp.index, marginal = beta.marg(link="logit"),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er12=exp(r12$estimate[1] + Emp.index$v * r12$estimate[2])/
+  (1 + exp(r12$estimate[1] + Emp.index$v * r12$estimate[2]))
+
+vtou_rho2=var(Er12)/var(Emp.index$u)
+
+#U->V
+r21=gcmr(v~u, data=Emp.index, marginal = beta.marg(link='logit'),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er21=exp(r21$estimate[1] + Emp.index$u * r21$estimate[2])/
+  (1 + exp(r21$estimate[1] + Emp.index$u * r21$estimate[2]))
+
+utov_rho2=var(Er21)/var(Emp.index$v)
+
+
+
+####Rscore####
+install.packages("readxl")
+library(readxl)
+library(openxlsx)
+param.jakbar=read.csv('D://Tugas Galih SMT 6//Bismillah BRIN//Data//Tuning//tuning_results2.csv')
+head(param.jakbar)
+param.jakpus=read.csv('D://Tugas Galih SMT 6//Bismillah BRIN//Data//Tuning//tuning_results3.csv')
+param.jaksel=read.csv('D://Tugas Galih SMT 6//Bismillah BRIN//Data//Tuning//tuning_results4.csv')
+param.jaktim=read.csv('D://Tugas Galih SMT 6//Bismillah BRIN//Data//Tuning//tuning_results5.csv')
+param.jakut=read.csv('D://Tugas Galih SMT 6//Bismillah BRIN//Data//Tuning//tuning_results6.csv')
+
+plot(param.jakbar$R2_total,type='l')
+
+install.packages("plotly")
+library(plotly)
+
+
+library(ggplot2)
+
+ggplot(param.jakpus, aes(x = n_estimators, y = R2_total)) +
+  geom_point(alpha = 0.5) + # alpha untuk membuat titik lebih transparan
+  scale_color_gradient(low = "blue", high = "red") +
+  theme_minimal() +
+  labs(x = "n_estimators", y = "R2_total" )
+
+dim(jakpus_lag0)
+dim(jakut_lag0)
+dim(jakbar_lag0)
+dim(jaktim_lag0)
+dim(jaksel_lag0)
+write.csv(jakpus_lag0$Jumlah.Kasus.DBD,"kasusjakpus.csv")
+write.csv(jakut_lag0[1:835,]$Jumlah.kasus.dbd,"kasusjakut.csv")
+write.csv(jakbar_lag0$Jumlah.Kasus.DBD,"kasusjakbar.csv")
+write.csv(jaktim_lag0[1:835,]$Jumlah.Kasus.DBD,"kasusjaktim.csv")
+write.csv(jaksel_lag0[1:835,]$Jumlah.Kasus.DBD,"kasusjaksel.csv")
+
+jakut_lag0$Jumlah.kasus.dbd
+
+
+jakbar_lag0$Jumlah.Kasus.DBD
+jakpus_lag0$Jumlah.Kasus.DBD
+####UTARA, PUSAT####
+#lag
+data <- data.frame(u = lag_matriks$`lag_x_to_y 0`[,1], v = lag_matriks$`lag_x_to_y 0`[,2])
+
+data <- data.frame(u = lag_matriks$`lag_x_to_y 1`[,1], v = lag_matriks$`lag_x_to_y 1`[,2])
+data <- data.frame(u = lag_matriks$`lag_y_to_x 1`[,1], v = lag_matriks$`lag_y_to_x 1`[,2])
+
+data <- data.frame(u = lag_matriks$`lag_x_to_y 2`[,1], v = lag_matriks$`lag_x_to_y 2`[,2])
+data <- data.frame(u = lag_matriks$`lag_y_to_x 2`[,1], v = lag_matriks$`lag_y_to_x 2`[,2])
+
+data = data.frame(u = lag_matriks$`lag_x_to_y 3`[,1], v = lag_matriks$`lag_x_to_y 3`[,2])
+data <- data.frame(u = lag_matriks$`lag_y_to_x 3`[,1], v = lag_matriks$`lag_y_to_x 3`[,2])
+
+data = data.frame(u = lag_matriks$`lag_x_to_y 4`[,1], v = lag_matriks$`lag_x_to_y 4`[,2])
+data <- data.frame(u = lag_matriks$`lag_y_to_x 4`[,1], v = lag_matriks$`lag_y_to_x 4`[,2])
+
+data = data.frame(u = lag_matriks$`lag_x_to_y 5`[,1], v = lag_matriks$`lag_x_to_y 5`[,2])
+data <- data.frame(u = lag_matriks$`lag_y_to_x 5`[,1], v = lag_matriks$`lag_y_to_x 5`[,2])
+
+data = data.frame(u = lag_matriks$`lag_x_to_y 6`[,1], v = lag_matriks$`lag_x_to_y 6`[,2])
+data <- data.frame(u = lag_matriks$`lag_y_to_x 6`[,1], v = lag_matriks$`lag_y_to_x 6`[,2])
+
+data = data.frame(u = lag_matriks$`lag_x_to_y 7`[,1], v = lag_matriks$`lag_x_to_y 7`[,2])
+data = data.frame(u = lag_matriks$`lag_y_to_x 7`[,1], v = lag_matriks$`lag_y_to_x 7`[,2])
+
+data = data.frame(u = lag_matriks$`lag_x_to_y 8`[,1], v = lag_matriks$`lag_x_to_y 8`[,2])
+data = data.frame(u = lag_matriks$`lag_y_to_x 8`[,1], v = lag_matriks$`lag_y_to_x 8`[,2])
+
+data=read.delim("clipboard")
+
+
+data <- data %>%
+  group_by(v) %>%
+  mutate(u = ifelse(n() > 1, median(u), u)) %>%
+  ungroup()
+
+# Step 2: Replace Y values by median for each group in X
+data <- data %>%
+  group_by(u) %>%
+  mutate(v = ifelse(n() > 1, median(v), v)) %>%
+  ungroup()
+
+data <- as.data.frame(data)
+
+write.csv(data$v,'median1.csv')
+write.csv(jakpus_lag0,'real.csv')
+b=as.data.frame(c(data$u, jakpus_lag0$Jumlah.Kasus.DBD))
+b
+Emp.index <- data.frame(u = Empiric.df(data[,1], data[,1]),
+                        v = Empiric.df(data[,2], data[,2]))
+plot(Emp.index$u)
+#V->U
+r12=gcmr(u ~ v, data=Emp.index, marginal = beta.marg(link="logit"),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er12=exp(r12$estimate[1] + Emp.index$v * r12$estimate[2])/
+  (1 + exp(r12$estimate[1] + Emp.index$v * r12$estimate[2]))
+
+vtou_rho2=var(Er12)/var(Emp.index$u)
+vtou_rho2
+#U->V
+r21=gcmr(v ~ u, data=Emp.index, marginal = beta.marg(link='logit'),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er21=exp(r21$estimate[1] + Emp.index$u * r21$estimate[2])/
+  (1 + exp(r21$estimate[1] + Emp.index$u * r21$estimate[2]))
+
+utov_rho2=var(Er21)/var(Emp.index$v)
+utov_rho2
+#mape
+mape1 <- mean(abs((Er21 - Emp.index$u) / Emp.index$u)) * 100
+mape1
+mape2 <- mean(abs((Er12 - Emp.index$v) / Emp.index$v)) * 100
+mape2
+
+plot(jakut_lag0[1:835,]$Jumlah.kasus.dbd,jakpus_lag0$Jumlah.Kasus.DBD)
+plot(jakpus_lag0$Jumlah.Kasus.DBD, jakut_lag0[1:835,]$Jumlah.kasus.dbd)
+
+# Transformasi logaritma
+log_y <- log(jakpus_lag0$Jumlah.Kasus.DBD+0.00000000001)
+
+# Regresi linear pada data yang ditransformasikan
+model <- lm(log_y ~ jakut_lag0[1:835,]$Jumlah.kasus.dbd)
+a <- exp(coef(model)[1])  # Konstanta (intersep)
+b <- coef(model)[2]       # Koefisien
+cat("a =", a, "\nb =", b, "\n")
+curve(a * exp(b * x), add = TRUE, col = "blue", lwd = 2)
+# Menampilkan ringkasan model
+summary(model)
+
+model=lm(jakpus_lag0$Jumlah.Kasus.DBD~jakut_lag0[1:835,]$Jumlah.kasus.dbd)
+abline(model)
+model=lm(jakut_lag0[1:835,]$Jumlah.kasus.dbd~jakpus_lag0$Jumlah.Kasus.DBD)
+
+# Asumsi c = 0
+epsilon <- 0.01
+log_y <- log(y + epsilon)
+
+# Regresi linier
+lm_model <- lm(log_y ~ x)
+summary(lm_model)
+
+# Estimasi parameter awal
+a_init <- exp(coef(lm_model)[1])  # Intercept -> ln(a)
+b_init <- -coef(lm_model)[2]  
+log_y <- log(y)
+
+plot()
+
+# Data contoh
+x <- c(180, 200, 220, 240, 260)
+y <- c(65, 60, 55, 50, 45)
+x=as.vector(jakut_lag0[1:835,]$Jumlah.kasus.dbd)
+y=as.vector(jakpus_lag0$Jumlah.Kasus.DBD)
+length(x)
+
+nls_model <- nls(y ~ a  + b * x , 
+                 start = list(a = a_init, b = b_init))
+# Definisikan model eksponensial
+nls_model <- nls(y ~ a * exp(-b * x) , 
+                 start = list(a = a_init, b = b_init))  # Inisialisasi parameter
+
+# Lihat hasil estimasi parameter
+summary(nls_model)
+
+RSS <- sum(residuals(nls_model)^2)
+TSS <- sum((y - mean(y))^2)  # Total Sum of Squares
+RSS <- sum(residuals(nls_model)^2)
+R2 <- 1 - (RSS / TSS)
+
+data=data.frame(u=x,v=predicted_y)
+data
+
+data=data.frame(u=jakut_lag0[1:835,]$Jumlah.kasus.dbd,v=jakpus_lag0$Jumlah.Kasus.DBD)
+data
+
+Emp.index <- data.frame(u = Empiric.df(data[,1], data[,1]),
+                        v = Empiric.df(data[,2], data[,2]))
+
+plot(x,predicted_y)
+plot(Emp.index$u, Emp.index$v)
+cor(Emp.index$u, Emp.index$v)
+# Prediksi y berdasarkan x
+predicted_y <- predict(nls_model, newdata = data.frame(x = x))
+print(predicted_y)
+
+# Plot data asli dan hasil fitting
+plot(x, y, xlab = "x", ylab = "y", pch = 19, col = "blue")
+points(x, predicted_y, col = "red", lwd = 2)  # Garis model
+
+cor(jakpus_lag0$Jumlah.Kasus.DBD, jakut_lag0[1:835,]$Jumlah.kasus.dbd,method="pearson")
+cor(jakut_lag0[1:835,]$Jumlah.kasus.dbd,jakpus_lag0$Jumlah.Kasus.DBD)
+
+# View the summary of the fitted model
+summary(model)
+
+?na_ma
+
+# Menampilkan hasil fitting
+summary(fit_nls)
+
+# Mengambil nilai parameter lambda
+lambda_est <- coef(fit_nls)
+lambda_est
+
+
+
+
+
+
+
+x1 <- c(0, 1, 2, 3, 4,5,6,7, 8)
+y1 <- c(1.029859,
+        0.9928033,
+        0.9903019,
+        0.9835124,
+        0.9908264,
+        0.9138253,
+        0.9238486,
+        0.8458715,
+        0.7605059) 
+
+x2 <- c(-8, -7,-6,-5,-4,-3,-2,-1, 0)
+y2 <- c(0.9447087,0.9641127,
+        0.9773805,
+        0.9870621,
+        1.007704,
+        1.001246,
+        1.016807,
+        1.023323,
+        1.029805) 
+
+plot(jakpus_lag0$Jumlah.Kasus.DBD, type="l",col='red')
+points(data$v,type="l",col="blue")
+
+data.frame(jakpus_lag0$Jumlah.Kasus.DBD,data$v)
+
+
+plot(x1, y1, type = "b", col = "blue", pch = 16, ylim = range(c(y1, y2)), xlim = range(c(x1, x2)), 
+     ylab = "y values", xlab = "x values")
+points(x2, y2, type = "b", col = "red", pch = 17)
+grid()
+
+
+mp1=c(18.97437,
+      19.20816,
+      19.98678,
+      20.21254,
+      19.99407,
+      16.69549,
+      22.50357,
+      26.30287,
+      46.52374
+)
+mp2=c(15.78849,
+      19.69551,
+      11.72414,
+      9.669072,
+      19.47106,
+      19.73075,
+      19.74079,
+      18.93889,
+      19.41012
+)
+plot(x1, mp1, type = "b", col = "blue", pch = 16, ylim = range(c(mp1, mp2)), xlim = range(c(x1, x2)), 
+     ylab = "mape values", xlab = "x values")
+points(x2, mp2, type = "b", col = "red", pch = 17)
+grid()
+
+
+####UTARA, BARAT####
+data <- data.frame(u = lag_matriks_ub$`lag_x_to_y 0`[,1], v = lag_matriks_ub$`lag_x_to_y 0`[,2])
+
+data <- data.frame(u = lag_matriks_ub$`lag_x_to_y 1`[,1], v = lag_matriks_ub$`lag_x_to_y 1`[,2])
+data <- data.frame(u = lag_matriks_ub$`lag_y_to_x 1`[,1], v = lag_matriks_ub$`lag_y_to_x 1`[,2])
+
+data <- data.frame(u = lag_matriks_ub$`lag_x_to_y 2`[,1], v = lag_matriks_ub$`lag_x_to_y 2`[,2])
+data <- data.frame(u = lag_matriks_ub$`lag_y_to_x 2`[,1], v = lag_matriks_ub$`lag_y_to_x 2`[,2])
+
+data = data.frame(u = lag_matriks_ub$`lag_x_to_y 3`[,1], v = lag_matriks_ub$`lag_x_to_y 3`[,2])
+data <- data.frame(u = lag_matriks_ub$`lag_y_to_x 3`[,1], v = lag_matriks_ub$`lag_y_to_x 3`[,2])
+
+data = data.frame(u = lag_matriks_ub$`lag_x_to_y 4`[,1], v = lag_matriks_ub$`lag_x_to_y 4`[,2])
+data <- data.frame(u = lag_matriks_ub$`lag_y_to_x 4`[,1], v = lag_matriks_ub$`lag_y_to_x 4`[,2])
+
+data = data.frame(u = lag_matriks_ub$`lag_x_to_y 5`[,1], v = lag_matriks_ub$`lag_x_to_y 5`[,2])
+data <- data.frame(u = lag_matriks_ub$`lag_y_to_x 5`[,1], v = lag_matriks_ub$`lag_y_to_x 5`[,2])
+
+data = data.frame(u = lag_matriks_ub$`lag_x_to_y 6`[,1], v = lag_matriks_ub$`lag_x_to_y 6`[,2])
+data <- data.frame(u = lag_matriks_ub$`lag_y_to_x 6`[,1], v = lag_matriks_ub$`lag_y_to_x 6`[,2])
+
+data = data.frame(u = lag_matriks_ub$`lag_x_to_y 7`[,1], v = lag_matriks_ub$`lag_x_to_y 7`[,2])
+data = data.frame(u = lag_matriks_ub$`lag_y_to_x 7`[,1], v = lag_matriks_ub$`lag_y_to_x 7`[,2])
+
+data = data.frame(u = lag_matriks_ub$`lag_x_to_y 8`[,1], v = lag_matriks_ub$`lag_x_to_y 8`[,2])
+data = data.frame(u = lag_matriks_ub$`lag_y_to_x 8`[,1], v = lag_matriks_ub$`lag_y_to_x 8`[,2])
+
+data <- data %>%
+  group_by(v) %>%
+  mutate(u = ifelse(n() > 1, median(u), u)) %>%
+  ungroup()
+
+# Step 2: Replace Y values by median for each group in X
+data <- data %>%
+  group_by(u) %>%
+  mutate(v = ifelse(n() > 1, median(v), v)) %>%
+  ungroup()
+
+data <- as.data.frame(data)
+
+Emp.index <- data.frame(u = Empiric.df(data[,1], data[,1]),
+                        v = Empiric.df(data[,2], data[,2]))
+
+#V->U
+r12=gcmr(u ~ v, data=Emp.index, marginal = beta.marg(link="logit"),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er12=exp(r12$estimate[1] + Emp.index$v * r12$estimate[2])/
+  (1 + exp(r12$estimate[1] + Emp.index$v * r12$estimate[2]))
+
+vtou_rho2=var(Er12)/var(Emp.index$u)
+vtou_rho2
+#U->V
+r21=gcmr(v~u, data=Emp.index, marginal = beta.marg(link='logit'),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er21=exp(r21$estimate[1] + Emp.index$u * r21$estimate[2])/
+  (1 + exp(r21$estimate[1] + Emp.index$u * r21$estimate[2]))
+
+utov_rho2=var(Er21)/var(Emp.index$v)
+utov_rho2
+#mape
+mape1 <- mean(abs((Er21 - Emp.index$u) / Er21)) * 100
+mape1
+mape2 <- mean(abs((Er12 - Emp.index$v) / Er12)) * 100
+mape2
+
+####UTARA, TIMUR####
+data <- data.frame(u = lag_matriks_ut$`lag_x_to_y 0`[,1], v = lag_matriks_ut$`lag_x_to_y 0`[,2])
+
+data <- data.frame(u = lag_matriks_ut$`lag_x_to_y 1`[,1], v = lag_matriks_ut$`lag_x_to_y 1`[,2])
+data <- data.frame(u = lag_matriks_ut$`lag_y_to_x 1`[,1], v = lag_matriks_ut$`lag_y_to_x 1`[,2])
+
+data <- data.frame(u = lag_matriks_ut$`lag_x_to_y 2`[,1], v = lag_matriks_ut$`lag_x_to_y 2`[,2])
+data <- data.frame(u = lag_matriks_ut$`lag_y_to_x 2`[,1], v = lag_matriks_ut$`lag_y_to_x 2`[,2])
+
+data = data.frame(u = lag_matriks_ut$`lag_x_to_y 3`[,1], v = lag_matriks_ut$`lag_x_to_y 3`[,2])
+data <- data.frame(u = lag_matriks_ut$`lag_y_to_x 3`[,1], v = lag_matriks_ut$`lag_y_to_x 3`[,2])
+
+data = data.frame(u = lag_matriks_ut$`lag_x_to_y 4`[,1], v = lag_matriks_ut$`lag_x_to_y 4`[,2])
+data <- data.frame(u = lag_matriks_ut$`lag_y_to_x 4`[,1], v = lag_matriks_ut$`lag_y_to_x 4`[,2])
+
+data = data.frame(u = lag_matriks_ut$`lag_x_to_y 5`[,1], v = lag_matriks_ut$`lag_x_to_y 5`[,2])
+data <- data.frame(u = lag_matriks_ut$`lag_y_to_x 5`[,1], v = lag_matriks_ut$`lag_y_to_x 5`[,2])
+
+data = data.frame(u = lag_matriks_ut$`lag_x_to_y 6`[,1], v = lag_matriks_ut$`lag_x_to_y 6`[,2])
+data <- data.frame(u = lag_matriks_ut$`lag_y_to_x 6`[,1], v = lag_matriks_ut$`lag_y_to_x 6`[,2])
+
+data = data.frame(u = lag_matriks_ut$`lag_x_to_y 7`[,1], v = lag_matriks_ut$`lag_x_to_y 7`[,2])
+data = data.frame(u = lag_matriks_ut$`lag_y_to_x 7`[,1], v = lag_matriks_ut$`lag_y_to_x 7`[,2])
+
+data = data.frame(u = lag_matriks_ut$`lag_x_to_y 8`[,1], v = lag_matriks_ut$`lag_x_to_y 8`[,2])
+data = data.frame(u = lag_matriks_ut$`lag_y_to_x 8`[,1], v = lag_matriks_ut$`lag_y_to_x 8`[,2])
+
+data <- data %>%
+  group_by(v) %>%
+  mutate(u = ifelse(n() > 1, median(u), u)) %>%
+  ungroup()
+
+# Step 2: Replace Y values by median for each group in X
+data <- data %>%
+  group_by(u) %>%
+  mutate(v = ifelse(n() > 1, median(v), v)) %>%
+  ungroup()
+
+data <- as.data.frame(data)
+
+Emp.index <- data.frame(u = Empiric.df(data[,1], data[,1]),
+                        v = Empiric.df(data[,2], data[,2]))
+
+#V->U
+r12=gcmr(u ~ v, data=Emp.index, marginal = beta.marg(link="logit"),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er12=exp(r12$estimate[1] + Emp.index$v * r12$estimate[2])/
+  (1 + exp(r12$estimate[1] + Emp.index$v * r12$estimate[2]))
+
+vtou_rho2=var(Er12)/var(Emp.index$u)
+vtou_rho2
+#U->V
+r21=gcmr(v~u, data=Emp.index, marginal = beta.marg(link='logit'),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er21=exp(r21$estimate[1] + Emp.index$u * r21$estimate[2])/
+  (1 + exp(r21$estimate[1] + Emp.index$u * r21$estimate[2]))
+
+utov_rho2=var(Er21)/var(Emp.index$v)
+utov_rho2
+#mape
+mape1 <- mean(abs((Er21 - Emp.index$u) / Er21)) * 100
+mape1
+mape2 <- mean(abs((Er12 - Emp.index$v) / Er12)) * 100
+mape2
+
+####UTARA, SELATAN####
+data <- data.frame(u = lag_matriks_us$`lag_x_to_y 0`[,1], v = lag_matriks_us$`lag_x_to_y 0`[,2])
+
+data <- data.frame(u = lag_matriks_us$`lag_x_to_y 1`[,1], v = lag_matriks_us$`lag_x_to_y 1`[,2])
+data <- data.frame(u = lag_matriks_us$`lag_y_to_x 1`[,1], v = lag_matriks_us$`lag_y_to_x 1`[,2])
+
+data <- data.frame(u = lag_matriks_us$`lag_x_to_y 2`[,1], v = lag_matriks_us$`lag_x_to_y 2`[,2])
+data <- data.frame(u = lag_matriks_us$`lag_y_to_x 2`[,1], v = lag_matriks_us$`lag_y_to_x 2`[,2])
+
+data = data.frame(u = lag_matriks_us$`lag_x_to_y 3`[,1], v = lag_matriks_us$`lag_x_to_y 3`[,2])
+data <- data.frame(u = lag_matriks_us$`lag_y_to_x 3`[,1], v = lag_matriks_us$`lag_y_to_x 3`[,2])
+
+data = data.frame(u = lag_matriks_us$`lag_x_to_y 4`[,1], v = lag_matriks_us$`lag_x_to_y 4`[,2])
+data <- data.frame(u = lag_matriks_us$`lag_y_to_x 4`[,1], v = lag_matriks_us$`lag_y_to_x 4`[,2])
+
+data = data.frame(u = lag_matriks_us$`lag_x_to_y 5`[,1], v = lag_matriks_us$`lag_x_to_y 5`[,2])
+data <- data.frame(u = lag_matriks_us$`lag_y_to_x 5`[,1], v = lag_matriks_us$`lag_y_to_x 5`[,2])
+
+data = data.frame(u = lag_matriks_us$`lag_x_to_y 6`[,1], v = lag_matriks_us$`lag_x_to_y 6`[,2])
+data <- data.frame(u = lag_matriks_us$`lag_y_to_x 6`[,1], v = lag_matriks_us$`lag_y_to_x 6`[,2])
+
+data = data.frame(u = lag_matriks_us$`lag_x_to_y 7`[,1], v = lag_matriks_us$`lag_x_to_y 7`[,2])
+data = data.frame(u = lag_matriks_us$`lag_y_to_x 7`[,1], v = lag_matriks_us$`lag_y_to_x 7`[,2])
+
+data = data.frame(u = lag_matriks_us$`lag_x_to_y 8`[,1], v = lag_matriks_us$`lag_x_to_y 8`[,2])
+data = data.frame(u = lag_matriks_us$`lag_y_to_x 8`[,1], v = lag_matriks_us$`lag_y_to_x 8`[,2])
+
+data <- data %>%
+  group_by(v) %>%
+  mutate(u = ifelse(n() > 1, median(u), u)) %>%
+  ungroup()
+
+# Step 2: Replace Y values by median for each group in X
+data <- data %>%
+  group_by(u) %>%
+  mutate(v = ifelse(n() > 1, median(v), v)) %>%
+  ungroup()
+
+data <- as.data.frame(data)
+
+Emp.index <- data.frame(u = Empiric.df(data[,1], data[,1]),
+                        v = Empiric.df(data[,2], data[,2]))
+
+#V->U
+r12=gcmr(u ~ v, data=Emp.index, marginal = beta.marg(link="logit"),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er12=exp(r12$estimate[1] + Emp.index$v * r12$estimate[2])/
+  (1 + exp(r12$estimate[1] + Emp.index$v * r12$estimate[2]))
+
+vtou_rho2=var(Er12)/var(Emp.index$u)
+vtou_rho2
+#U->V
+r21=gcmr(v~u, data=Emp.index, marginal = beta.marg(link='logit'),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er21=exp(r21$estimate[1] + Emp.index$u * r21$estimate[2])/
+  (1 + exp(r21$estimate[1] + Emp.index$u * r21$estimate[2]))
+
+utov_rho2=var(Er21)/var(Emp.index$v)
+utov_rho2
+#mape
+mape1 <- mean(abs((Er21 - Emp.index$u) / Er21)) * 100
+mape1
+mape2 <- mean(abs((Er12 - Emp.index$v) / Er12)) * 100
+mape2
+
+####PUSAT, BARAT####
+data <- data.frame(u = lag_matriks_pb$`lag_x_to_y 0`[,1], v = lag_matriks_pb$`lag_x_to_y 0`[,2])
+
+data <- data.frame(u = lag_matriks_pb$`lag_x_to_y 1`[,1], v = lag_matriks_pb$`lag_x_to_y 1`[,2])
+data <- data.frame(u = lag_matriks_pb$`lag_y_to_x 1`[,1], v = lag_matriks_pb$`lag_y_to_x 1`[,2])
+
+data <- data.frame(u = lag_matriks_pb$`lag_x_to_y 2`[,1], v = lag_matriks_pb$`lag_x_to_y 2`[,2])
+data <- data.frame(u = lag_matriks_pb$`lag_y_to_x 2`[,1], v = lag_matriks_pb$`lag_y_to_x 2`[,2])
+
+data = data.frame(u = lag_matriks_pb$`lag_x_to_y 3`[,1], v = lag_matriks_pb$`lag_x_to_y 3`[,2])
+data <- data.frame(u = lag_matriks_pb$`lag_y_to_x 3`[,1], v = lag_matriks_pb$`lag_y_to_x 3`[,2])
+
+data = data.frame(u = lag_matriks_pb$`lag_x_to_y 4`[,1], v = lag_matriks_pb$`lag_x_to_y 4`[,2])
+data <- data.frame(u = lag_matriks_pb$`lag_y_to_x 4`[,1], v = lag_matriks_pb$`lag_y_to_x 4`[,2])
+
+data = data.frame(u = lag_matriks_pb$`lag_x_to_y 5`[,1], v = lag_matriks_pb$`lag_x_to_y 5`[,2])
+data <- data.frame(u = lag_matriks_pb$`lag_y_to_x 5`[,1], v = lag_matriks_pb$`lag_y_to_x 5`[,2])
+
+data = data.frame(u = lag_matriks_pb$`lag_x_to_y 6`[,1], v = lag_matriks_pb$`lag_x_to_y 6`[,2])
+data <- data.frame(u = lag_matriks_pb$`lag_y_to_x 6`[,1], v = lag_matriks_pb$`lag_y_to_x 6`[,2])
+
+data = data.frame(u = lag_matriks_pb$`lag_x_to_y 7`[,1], v = lag_matriks_pb$`lag_x_to_y 7`[,2])
+data = data.frame(u = lag_matriks_pb$`lag_y_to_x 7`[,1], v = lag_matriks_pb$`lag_y_to_x 7`[,2])
+
+data = data.frame(u = lag_matriks_pb$`lag_x_to_y 8`[,1], v = lag_matriks_pb$`lag_x_to_y 8`[,2])
+data = data.frame(u = lag_matriks_pb$`lag_y_to_x 8`[,1], v = lag_matriks_pb$`lag_y_to_x 8`[,2])
+
+data <- data %>%
+  group_by(v) %>%
+  mutate(u = ifelse(n() > 1, median(u), u)) %>%
+  ungroup()
+
+# Step 2: Replace Y values by median for each group in X
+data <- data %>%
+  group_by(u) %>%
+  mutate(v = ifelse(n() > 1, median(v), v)) %>%
+  ungroup()
+
+data <- as.data.frame(data)
+
+Emp.index <- data.frame(u = Empiric.df(data[,1], data[,1]),
+                        v = Empiric.df(data[,2], data[,2]))
+
+#V->U
+r12=gcmr(u ~ v, data=Emp.index, marginal = beta.marg(link="logit"),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er12=exp(r12$estimate[1] + Emp.index$v * r12$estimate[2])/
+  (1 + exp(r12$estimate[1] + Emp.index$v * r12$estimate[2]))
+
+vtou_rho2=var(Er12)/var(Emp.index$u)
+vtou_rho2
+#U->V
+r21=gcmr(v~u, data=Emp.index, marginal = beta.marg(link='logit'),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er21=exp(r21$estimate[1] + Emp.index$u * r21$estimate[2])/
+  (1 + exp(r21$estimate[1] + Emp.index$u * r21$estimate[2]))
+
+utov_rho2=var(Er21)/var(Emp.index$v)
+utov_rho2
+#mape
+mape1 <- mean(abs((Er21 - Emp.index$u) / Er21)) * 100
+mape1
+mape2 <- mean(abs((Er12 - Emp.index$v) / Er12)) * 100
+mape2
+
+####PUSAT, TIMUR####
+data <- data.frame(u = lag_matriks_pt$`lag_x_to_y 0`[,1], v = lag_matriks_pt$`lag_x_to_y 0`[,2])
+
+data <- data.frame(u = lag_matriks_pt$`lag_x_to_y 1`[,1], v = lag_matriks_pt$`lag_x_to_y 1`[,2])
+data <- data.frame(u = lag_matriks_pt$`lag_y_to_x 1`[,1], v = lag_matriks_pt$`lag_y_to_x 1`[,2])
+
+data <- data.frame(u = lag_matriks_pt$`lag_x_to_y 2`[,1], v = lag_matriks_pt$`lag_x_to_y 2`[,2])
+data <- data.frame(u = lag_matriks_pt$`lag_y_to_x 2`[,1], v = lag_matriks_pt$`lag_y_to_x 2`[,2])
+
+data = data.frame(u = lag_matriks_pt$`lag_x_to_y 3`[,1], v = lag_matriks_pt$`lag_x_to_y 3`[,2])
+data <- data.frame(u = lag_matriks_pt$`lag_y_to_x 3`[,1], v = lag_matriks_pt$`lag_y_to_x 3`[,2])
+
+data = data.frame(u = lag_matriks_pt$`lag_x_to_y 4`[,1], v = lag_matriks_pt$`lag_x_to_y 4`[,2])
+data <- data.frame(u = lag_matriks_pt$`lag_y_to_x 4`[,1], v = lag_matriks_pt$`lag_y_to_x 4`[,2])
+
+data = data.frame(u = lag_matriks_pt$`lag_x_to_y 5`[,1], v = lag_matriks_pt$`lag_x_to_y 5`[,2])
+data <- data.frame(u = lag_matriks_pt$`lag_y_to_x 5`[,1], v = lag_matriks_pt$`lag_y_to_x 5`[,2])
+
+data = data.frame(u = lag_matriks_pt$`lag_x_to_y 6`[,1], v = lag_matriks_pt$`lag_x_to_y 6`[,2])
+data <- data.frame(u = lag_matriks_pt$`lag_y_to_x 6`[,1], v = lag_matriks_pt$`lag_y_to_x 6`[,2])
+
+data = data.frame(u = lag_matriks_pt$`lag_x_to_y 7`[,1], v = lag_matriks_pt$`lag_x_to_y 7`[,2])
+data = data.frame(u = lag_matriks_pt$`lag_y_to_x 7`[,1], v = lag_matriks_pt$`lag_y_to_x 7`[,2])
+
+data = data.frame(u = lag_matriks_pt$`lag_x_to_y 8`[,1], v = lag_matriks_pt$`lag_x_to_y 8`[,2])
+data = data.frame(u = lag_matriks_pt$`lag_y_to_x 8`[,1], v = lag_matriks_pt$`lag_y_to_x 8`[,2])
+
+data <- data %>%
+  group_by(v) %>%
+  mutate(u = ifelse(n() > 1, median(u), u)) %>%
+  ungroup()
+
+# Step 2: Replace Y values by median for each group in X
+data <- data %>%
+  group_by(u) %>%
+  mutate(v = ifelse(n() > 1, median(v), v)) %>%
+  ungroup()
+
+data <- as.data.frame(data)
+
+Emp.index <- data.frame(u = Empiric.df(data[,1], data[,1]),
+                        v = Empiric.df(data[,2], data[,2]))
+
+#V->U
+r12=gcmr(u ~ v, data=Emp.index, marginal = beta.marg(link="logit"),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er12=exp(r12$estimate[1] + Emp.index$v * r12$estimate[2])/
+  (1 + exp(r12$estimate[1] + Emp.index$v * r12$estimate[2]))
+
+vtou_rho2=var(Er12)/var(Emp.index$u)
+vtou_rho2
+#U->V
+r21=gcmr(v~u, data=Emp.index, marginal = beta.marg(link='logit'),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er21=exp(r21$estimate[1] + Emp.index$u * r21$estimate[2])/
+  (1 + exp(r21$estimate[1] + Emp.index$u * r21$estimate[2]))
+
+utov_rho2=var(Er21)/var(Emp.index$v)
+utov_rho2
+#mape
+mape1 <- mean(abs((Er21 - Emp.index$u) / Er21)) * 100
+mape1
+mape2 <- mean(abs((Er12 - Emp.index$v) / Er12)) * 100
+mape2
+
+####PUSAT, SELATAN####
+data <- data.frame(u = lag_matriks_ps$`lag_x_to_y 0`[,1], v = lag_matriks_ps$`lag_x_to_y 0`[,2])
+
+data <- data.frame(u = lag_matriks_ps$`lag_x_to_y 1`[,1], v = lag_matriks_ps$`lag_x_to_y 1`[,2])
+data <- data.frame(u = lag_matriks_ps$`lag_y_to_x 1`[,1], v = lag_matriks_ps$`lag_y_to_x 1`[,2])
+
+data <- data.frame(u = lag_matriks_ps$`lag_x_to_y 2`[,1], v = lag_matriks_ps$`lag_x_to_y 2`[,2])
+data <- data.frame(u = lag_matriks_ps$`lag_y_to_x 2`[,1], v = lag_matriks_ps$`lag_y_to_x 2`[,2])
+
+data = data.frame(u = lag_matriks_ps$`lag_x_to_y 3`[,1], v = lag_matriks_ps$`lag_x_to_y 3`[,2])
+data <- data.frame(u = lag_matriks_ps$`lag_y_to_x 3`[,1], v = lag_matriks_ps$`lag_y_to_x 3`[,2])
+
+data = data.frame(u = lag_matriks_ps$`lag_x_to_y 4`[,1], v = lag_matriks_ps$`lag_x_to_y 4`[,2])
+data <- data.frame(u = lag_matriks_ps$`lag_y_to_x 4`[,1], v = lag_matriks_ps$`lag_y_to_x 4`[,2])
+
+data = data.frame(u = lag_matriks_ps$`lag_x_to_y 5`[,1], v = lag_matriks_ps$`lag_x_to_y 5`[,2])
+data <- data.frame(u = lag_matriks_ps$`lag_y_to_x 5`[,1], v = lag_matriks_ps$`lag_y_to_x 5`[,2])
+
+data = data.frame(u = lag_matriks_ps$`lag_x_to_y 6`[,1], v = lag_matriks_ps$`lag_x_to_y 6`[,2])
+data <- data.frame(u = lag_matriks_ps$`lag_y_to_x 6`[,1], v = lag_matriks_ps$`lag_y_to_x 6`[,2])
+
+data = data.frame(u = lag_matriks_ps$`lag_x_to_y 7`[,1], v = lag_matriks_ps$`lag_x_to_y 7`[,2])
+data = data.frame(u = lag_matriks_ps$`lag_y_to_x 7`[,1], v = lag_matriks_ps$`lag_y_to_x 7`[,2])
+
+data = data.frame(u = lag_matriks_ps$`lag_x_to_y 8`[,1], v = lag_matriks_ps$`lag_x_to_y 8`[,2])
+data = data.frame(u = lag_matriks_ps$`lag_y_to_x 8`[,1], v = lag_matriks_ps$`lag_y_to_x 8`[,2])
+
+data <- data %>%
+  group_by(v) %>%
+  mutate(u = ifelse(n() > 1, median(u), u)) %>%
+  ungroup()
+
+# Step 2: Replace Y values by median for each group in X
+data <- data %>%
+  group_by(u) %>%
+  mutate(v = ifelse(n() > 1, median(v), v)) %>%
+  ungroup()
+
+data <- as.data.frame(data)
+
+Emp.index <- data.frame(u = Empiric.df(data[,1], data[,1]),
+                        v = Empiric.df(data[,2], data[,2]))
+
+#V->U
+r12=gcmr(u ~ v, data=Emp.index, marginal = beta.marg(link="logit"),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er12=exp(r12$estimate[1] + Emp.index$v * r12$estimate[2])/
+  (1 + exp(r12$estimate[1] + Emp.index$v * r12$estimate[2]))
+
+vtou_rho2=var(Er12)/var(Emp.index$u)
+vtou_rho2
+#U->V
+r21=gcmr(v~u, data=Emp.index, marginal = beta.marg(link='logit'),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er21=exp(r21$estimate[1] + Emp.index$u * r21$estimate[2])/
+  (1 + exp(r21$estimate[1] + Emp.index$u * r21$estimate[2]))
+
+utov_rho2=var(Er21)/var(Emp.index$v)
+utov_rho2
+#mape
+mape1 <- mean(abs((Er21 - Emp.index$u) / Er21)) * 100
+mape1
+mape2 <- mean(abs((Er12 - Emp.index$v) / Er12)) * 100
+mape2
+
+####BARAT, TIMUR####
+data <- data.frame(u = lag_matriks_bt$`lag_x_to_y 0`[,1], v = lag_matriks_bt$`lag_x_to_y 0`[,2])
+
+data <- data.frame(u = lag_matriks_bt$`lag_x_to_y 1`[,1], v = lag_matriks_bt$`lag_x_to_y 1`[,2])
+data <- data.frame(u = lag_matriks_bt$`lag_y_to_x 1`[,1], v = lag_matriks_bt$`lag_y_to_x 1`[,2])
+
+data <- data.frame(u = lag_matriks_bt$`lag_x_to_y 2`[,1], v = lag_matriks_bt$`lag_x_to_y 2`[,2])
+data <- data.frame(u = lag_matriks_bt$`lag_y_to_x 2`[,1], v = lag_matriks_bt$`lag_y_to_x 2`[,2])
+
+data = data.frame(u = lag_matriks_bt$`lag_x_to_y 3`[,1], v = lag_matriks_bt$`lag_x_to_y 3`[,2])
+data <- data.frame(u = lag_matriks_bt$`lag_y_to_x 3`[,1], v = lag_matriks_bt$`lag_y_to_x 3`[,2])
+
+data = data.frame(u = lag_matriks_bt$`lag_x_to_y 4`[,1], v = lag_matriks_bt$`lag_x_to_y 4`[,2])
+data <- data.frame(u = lag_matriks_bt$`lag_y_to_x 4`[,1], v = lag_matriks_bt$`lag_y_to_x 4`[,2])
+
+data = data.frame(u = lag_matriks_bt$`lag_x_to_y 5`[,1], v = lag_matriks_bt$`lag_x_to_y 5`[,2])
+data <- data.frame(u = lag_matriks_bt$`lag_y_to_x 5`[,1], v = lag_matriks_bt$`lag_y_to_x 5`[,2])
+
+data = data.frame(u = lag_matriks_bt$`lag_x_to_y 6`[,1], v = lag_matriks_bt$`lag_x_to_y 6`[,2])
+data <- data.frame(u = lag_matriks_bt$`lag_y_to_x 6`[,1], v = lag_matriks_bt$`lag_y_to_x 6`[,2])
+
+data = data.frame(u = lag_matriks_bt$`lag_x_to_y 7`[,1], v = lag_matriks_bt$`lag_x_to_y 7`[,2])
+data = data.frame(u = lag_matriks_bt$`lag_y_to_x 7`[,1], v = lag_matriks_bt$`lag_y_to_x 7`[,2])
+
+data = data.frame(u = lag_matriks_bt$`lag_x_to_y 8`[,1], v = lag_matriks_bt$`lag_x_to_y 8`[,2])
+data = data.frame(u = lag_matriks_bt$`lag_y_to_x 8`[,1], v = lag_matriks_bt$`lag_y_to_x 8`[,2])
+
+data <- data %>%
+  group_by(v) %>%
+  mutate(u = ifelse(n() > 1, median(u), u)) %>%
+  ungroup()
+
+# Step 2: Replace Y values by median for each group in X
+data <- data %>%
+  group_by(u) %>%
+  mutate(v = ifelse(n() > 1, median(v), v)) %>%
+  ungroup()
+
+data <- as.data.frame(data)
+
+Emp.index <- data.frame(u = Empiric.df(data[,1], data[,1]),
+                        v = Empiric.df(data[,2], data[,2]))
+
+#V->U
+r12=gcmr(u ~ v, data=Emp.index, marginal = beta.marg(link="logit"),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er12=exp(r12$estimate[1] + Emp.index$v * r12$estimate[2])/
+  (1 + exp(r12$estimate[1] + Emp.index$v * r12$estimate[2]))
+
+vtou_rho2=var(Er12)/var(Emp.index$u)
+vtou_rho2
+#U->V
+r21=gcmr(v~u, data=Emp.index, marginal = beta.marg(link='logit'),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er21=exp(r21$estimate[1] + Emp.index$u * r21$estimate[2])/
+  (1 + exp(r21$estimate[1] + Emp.index$u * r21$estimate[2]))
+
+utov_rho2=var(Er21)/var(Emp.index$v)
+utov_rho2
+#mape
+mape1 <- mean(abs((Er21 - Emp.index$u) / Er21)) * 100
+mape1
+mape2 <- mean(abs((Er12 - Emp.index$v) / Er12)) * 100
+mape2
+
+####BARAT, SELATAN####
+data <- data.frame(u = lag_matriks_bs$`lag_x_to_y 0`[,1], v = lag_matriks_bs$`lag_x_to_y 0`[,2])
+
+data <- data.frame(u = lag_matriks_bs$`lag_x_to_y 1`[,1], v = lag_matriks_bs$`lag_x_to_y 1`[,2])
+data <- data.frame(u = lag_matriks_bs$`lag_y_to_x 1`[,1], v = lag_matriks_bs$`lag_y_to_x 1`[,2])
+
+data <- data.frame(u = lag_matriks_bs$`lag_x_to_y 2`[,1], v = lag_matriks_bs$`lag_x_to_y 2`[,2])
+data <- data.frame(u = lag_matriks_bs$`lag_y_to_x 2`[,1], v = lag_matriks_bs$`lag_y_to_x 2`[,2])
+
+data = data.frame(u = lag_matriks_bs$`lag_x_to_y 3`[,1], v = lag_matriks_bs$`lag_x_to_y 3`[,2])
+data <- data.frame(u = lag_matriks_bs$`lag_y_to_x 3`[,1], v = lag_matriks_bs$`lag_y_to_x 3`[,2])
+
+data = data.frame(u = lag_matriks_bs$`lag_x_to_y 4`[,1], v = lag_matriks_bs$`lag_x_to_y 4`[,2])
+data <- data.frame(u = lag_matriks_bs$`lag_y_to_x 4`[,1], v = lag_matriks_bs$`lag_y_to_x 4`[,2])
+
+data = data.frame(u = lag_matriks_bs$`lag_x_to_y 5`[,1], v = lag_matriks_bs$`lag_x_to_y 5`[,2])
+data <- data.frame(u = lag_matriks_bs$`lag_y_to_x 5`[,1], v = lag_matriks_bs$`lag_y_to_x 5`[,2])
+
+data = data.frame(u = lag_matriks_bs$`lag_x_to_y 6`[,1], v = lag_matriks_bs$`lag_x_to_y 6`[,2])
+data <- data.frame(u = lag_matriks_bs$`lag_y_to_x 6`[,1], v = lag_matriks_bs$`lag_y_to_x 6`[,2])
+
+data = data.frame(u = lag_matriks_bs$`lag_x_to_y 7`[,1], v = lag_matriks_bs$`lag_x_to_y 7`[,2])
+data = data.frame(u = lag_matriks_bs$`lag_y_to_x 7`[,1], v = lag_matriks_bs$`lag_y_to_x 7`[,2])
+
+data = data.frame(u = lag_matriks_bs$`lag_x_to_y 8`[,1], v = lag_matriks_bs$`lag_x_to_y 8`[,2])
+data = data.frame(u = lag_matriks_bs$`lag_y_to_x 8`[,1], v = lag_matriks_bs$`lag_y_to_x 8`[,2])
+
+data <- data %>%
+  group_by(v) %>%
+  mutate(u = ifelse(n() > 1, median(u), u)) %>%
+  ungroup()
+
+# Step 2: Replace Y values by median for each group in X
+data <- data %>%
+  group_by(u) %>%
+  mutate(v = ifelse(n() > 1, median(v), v)) %>%
+  ungroup()
+
+data <- as.data.frame(data)
+
+Emp.index <- data.frame(u = Empiric.df(data[,1], data[,1]),
+                        v = Empiric.df(data[,2], data[,2]))
+
+#V->U
+r12=gcmr(u ~ v, data=Emp.index, marginal = beta.marg(link="logit"),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er12=exp(r12$estimate[1] + Emp.index$v * r12$estimate[2])/
+  (1 + exp(r12$estimate[1] + Emp.index$v * r12$estimate[2]))
+
+vtou_rho2=var(Er12)/var(Emp.index$u)
+vtou_rho2
+#U->V
+r21=gcmr(v~u, data=Emp.index, marginal = beta.marg(link='logit'),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er21=exp(r21$estimate[1] + Emp.index$u * r21$estimate[2])/
+  (1 + exp(r21$estimate[1] + Emp.index$u * r21$estimate[2]))
+
+utov_rho2=var(Er21)/var(Emp.index$v)
+utov_rho2
+#mape
+mape1 <- mean(abs((Er21 - Emp.index$u) / Er21)) * 100
+mape1
+mape2 <- mean(abs((Er12 - Emp.index$v) / Er12)) * 100
+mape2
+
+####TIMUR, SELATAN####
+data <- data.frame(u = lag_matriks_ts$`lag_x_to_y 0`[,1], v = lag_matriks_ts$`lag_x_to_y 0`[,2])
+
+data <- data.frame(u = lag_matriks_ts$`lag_x_to_y 1`[,1], v = lag_matriks_ts$`lag_x_to_y 1`[,2])
+data <- data.frame(u = lag_matriks_ts$`lag_y_to_x 1`[,1], v = lag_matriks_ts$`lag_y_to_x 1`[,2])
+
+data <- data.frame(u = lag_matriks_ts$`lag_x_to_y 2`[,1], v = lag_matriks_ts$`lag_x_to_y 2`[,2])
+data <- data.frame(u = lag_matriks_ts$`lag_y_to_x 2`[,1], v = lag_matriks_ts$`lag_y_to_x 2`[,2])
+
+data = data.frame(u = lag_matriks_ts$`lag_x_to_y 3`[,1], v = lag_matriks_ts$`lag_x_to_y 3`[,2])
+data <- data.frame(u = lag_matriks_ts$`lag_y_to_x 3`[,1], v = lag_matriks_ts$`lag_y_to_x 3`[,2])
+
+data = data.frame(u = lag_matriks_ts$`lag_x_to_y 4`[,1], v = lag_matriks_ts$`lag_x_to_y 4`[,2])
+data <- data.frame(u = lag_matriks_ts$`lag_y_to_x 4`[,1], v = lag_matriks_ts$`lag_y_to_x 4`[,2])
+
+data = data.frame(u = lag_matriks_ts$`lag_x_to_y 5`[,1], v = lag_matriks_ts$`lag_x_to_y 5`[,2])
+data <- data.frame(u = lag_matriks_ts$`lag_y_to_x 5`[,1], v = lag_matriks_ts$`lag_y_to_x 5`[,2])
+
+data = data.frame(u = lag_matriks_ts$`lag_x_to_y 6`[,1], v = lag_matriks_ts$`lag_x_to_y 6`[,2])
+data <- data.frame(u = lag_matriks_ts$`lag_y_to_x 6`[,1], v = lag_matriks_ts$`lag_y_to_x 6`[,2])
+
+data = data.frame(u = lag_matriks_ts$`lag_x_to_y 7`[,1], v = lag_matriks_ts$`lag_x_to_y 7`[,2])
+data = data.frame(u = lag_matriks_ts$`lag_y_to_x 7`[,1], v = lag_matriks_ts$`lag_y_to_x 7`[,2])
+
+data = data.frame(u = lag_matriks_ts$`lag_x_to_y 8`[,1], v = lag_matriks_ts$`lag_x_to_y 8`[,2])
+data = data.frame(u = lag_matriks_ts$`lag_y_to_x 8`[,1], v = lag_matriks_ts$`lag_y_to_x 8`[,2])
+
+data <- data %>%
+  group_by(v) %>%
+  mutate(u = ifelse(n() > 1, median(u), u)) %>%
+  ungroup()
+
+# Step 2: Replace Y values by median for each group in X
+data <- data %>%
+  group_by(u) %>%
+  mutate(v = ifelse(n() > 1, median(v), v)) %>%
+  ungroup()
+
+data <- as.data.frame(data)
+
+Emp.index <- data.frame(u = Empiric.df(data[,1], data[,1]),
+                        v = Empiric.df(data[,2], data[,2]))
+
+#V->U
+r12=gcmr(u ~ v, data=Emp.index, marginal = beta.marg(link="logit"),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er12=exp(r12$estimate[1] + Emp.index$v * r12$estimate[2])/
+  (1 + exp(r12$estimate[1] + Emp.index$v * r12$estimate[2]))
+
+vtou_rho2=var(Er12)/var(Emp.index$u)
+vtou_rho2
+#U->V
+r21=gcmr(v~u, data=Emp.index, marginal = beta.marg(link='logit'),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er21=exp(r21$estimate[1] + Emp.index$u * r21$estimate[2])/
+  (1 + exp(r21$estimate[1] + Emp.index$u * r21$estimate[2]))
+
+utov_rho2=var(Er21)/var(Emp.index$v)
+utov_rho2
+#mape
+mape1 <- mean(abs((Er21 - Emp.index$u) / Er21)) * 100
+mape1
+mape2 <- mean(abs((Er12 - Emp.index$v) / Er12)) * 100
+mape2
+
+####BARAT, PUSAT####
+data <- data.frame(u = lag_matriks_bp$`lag_x_to_y 0`[,1], v = lag_matriks_bp$`lag_x_to_y 0`[,2])
+
+data <- data.frame(u = lag_matriks_bp$`lag_x_to_y 1`[,1], v = lag_matriks_bp$`lag_x_to_y 1`[,2])
+data <- data.frame(u = lag_matriks_bp$`lag_y_to_x 1`[,1], v = lag_matriks_bp$`lag_y_to_x 1`[,2])
+
+data <- data.frame(u = lag_matriks_bp$`lag_x_to_y 2`[,1], v = lag_matriks_bp$`lag_x_to_y 2`[,2])
+data <- data.frame(u = lag_matriks_bp$`lag_y_to_x 2`[,1], v = lag_matriks_bp$`lag_y_to_x 2`[,2])
+
+data = data.frame(u = lag_matriks_bp$`lag_x_to_y 3`[,1], v = lag_matriks_bp$`lag_x_to_y 3`[,2])
+data <- data.frame(u = lag_matriks_bp$`lag_y_to_x 3`[,1], v = lag_matriks_bp$`lag_y_to_x 3`[,2])
+
+data = data.frame(u = lag_matriks_bp$`lag_x_to_y 4`[,1], v = lag_matriks_bp$`lag_x_to_y 4`[,2])
+data <- data.frame(u = lag_matriks_bp$`lag_y_to_x 4`[,1], v = lag_matriks_bp$`lag_y_to_x 4`[,2])
+
+data = data.frame(u = lag_matriks_bp$`lag_x_to_y 5`[,1], v = lag_matriks_bp$`lag_x_to_y 5`[,2])
+data <- data.frame(u = lag_matriks_bp$`lag_y_to_x 5`[,1], v = lag_matriks_bp$`lag_y_to_x 5`[,2])
+
+data = data.frame(u = lag_matriks_bp$`lag_x_to_y 6`[,1], v = lag_matriks_bp$`lag_x_to_y 6`[,2])
+data <- data.frame(u = lag_matriks_bp$`lag_y_to_x 6`[,1], v = lag_matriks_bp$`lag_y_to_x 6`[,2])
+
+data = data.frame(u = lag_matriks_bp$`lag_x_to_y 7`[,1], v = lag_matriks_bp$`lag_x_to_y 7`[,2])
+data = data.frame(u = lag_matriks_bp$`lag_y_to_x 7`[,1], v = lag_matriks_bp$`lag_y_to_x 7`[,2])
+
+data = data.frame(u = lag_matriks_bp$`lag_x_to_y 8`[,1], v = lag_matriks_bp$`lag_x_to_y 8`[,2])
+data = data.frame(u = lag_matriks_bp$`lag_y_to_x 8`[,1], v = lag_matriks_bp$`lag_y_to_x 8`[,2])
+
+data <- data %>%
+  group_by(v) %>%
+  mutate(u = ifelse(n() > 1, median(u), u)) %>%
+  ungroup()
+
+# Step 2: Replace Y values by median for each group in X
+data <- data %>%
+  group_by(u) %>%
+  mutate(v = ifelse(n() > 1, median(v), v)) %>%
+  ungroup()
+
+data <- as.data.frame(data)
+
+Emp.index <- data.frame(u = Empiric.df(data[,1], data[,1]),
+                        v = Empiric.df(data[,2], data[,2]))
+
+#V->U
+r12=gcmr(u ~ v, data=Emp.index, marginal = beta.marg(link="logit"),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er12=exp(r12$estimate[1] + Emp.index$v * r12$estimate[2])/
+  (1 + exp(r12$estimate[1] + Emp.index$v * r12$estimate[2]))
+
+vtou_rho2=var(Er12)/var(Emp.index$u)
+vtou_rho2
+#U->V
+r21=gcmr(v~u, data=Emp.index, marginal = beta.marg(link='logit'),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er21=exp(r21$estimate[1] + Emp.index$u * r21$estimate[2])/
+  (1 + exp(r21$estimate[1] + Emp.index$u * r21$estimate[2]))
+
+utov_rho2=var(Er21)/var(Emp.index$v)
+utov_rho2
+#mape
+mape1 <- mean(abs((Er21 - Emp.index$u) / Er21)) * 100
+mape1
+mape2 <- mean(abs((Er12 - Emp.index$v) / Er12)) * 100
+mape2
+
+####TIMUR, PUSAT####
+data <- data.frame(u = lag_matriks_tp$`lag_x_to_y 0`[,1], v = lag_matriks_tp$`lag_x_to_y 0`[,2])
+
+data <- data.frame(u = lag_matriks_tp$`lag_x_to_y 1`[,1], v = lag_matriks_tp$`lag_x_to_y 1`[,2])
+data <- data.frame(u = lag_matriks_tp$`lag_y_to_x 1`[,1], v = lag_matriks_tp$`lag_y_to_x 1`[,2])
+
+data <- data.frame(u = lag_matriks_tp$`lag_x_to_y 2`[,1], v = lag_matriks_tp$`lag_x_to_y 2`[,2])
+data <- data.frame(u = lag_matriks_tp$`lag_y_to_x 2`[,1], v = lag_matriks_tp$`lag_y_to_x 2`[,2])
+
+data = data.frame(u = lag_matriks_tp$`lag_x_to_y 3`[,1], v = lag_matriks_tp$`lag_x_to_y 3`[,2])
+data <- data.frame(u = lag_matriks_tp$`lag_y_to_x 3`[,1], v = lag_matriks_tp$`lag_y_to_x 3`[,2])
+
+data = data.frame(u = lag_matriks_tp$`lag_x_to_y 4`[,1], v = lag_matriks_tp$`lag_x_to_y 4`[,2])
+data <- data.frame(u = lag_matriks_tp$`lag_y_to_x 4`[,1], v = lag_matriks_tp$`lag_y_to_x 4`[,2])
+
+data = data.frame(u = lag_matriks_tp$`lag_x_to_y 5`[,1], v = lag_matriks_tp$`lag_x_to_y 5`[,2])
+data <- data.frame(u = lag_matriks_tp$`lag_y_to_x 5`[,1], v = lag_matriks_tp$`lag_y_to_x 5`[,2])
+
+data = data.frame(u = lag_matriks_tp$`lag_x_to_y 6`[,1], v = lag_matriks_tp$`lag_x_to_y 6`[,2])
+data <- data.frame(u = lag_matriks_tp$`lag_y_to_x 6`[,1], v = lag_matriks_tp$`lag_y_to_x 6`[,2])
+
+data = data.frame(u = lag_matriks_tp$`lag_x_to_y 7`[,1], v = lag_matriks_tp$`lag_x_to_y 7`[,2])
+data = data.frame(u = lag_matriks_tp$`lag_y_to_x 7`[,1], v = lag_matriks_tp$`lag_y_to_x 7`[,2])
+
+data = data.frame(u = lag_matriks_tp$`lag_x_to_y 8`[,1], v = lag_matriks_tp$`lag_x_to_y 8`[,2])
+data = data.frame(u = lag_matriks_tp$`lag_y_to_x 8`[,1], v = lag_matriks_tp$`lag_y_to_x 8`[,2])
+
+data <- data %>%
+  group_by(v) %>%
+  mutate(u = ifelse(n() > 1, median(u), u)) %>%
+  ungroup()
+
+# Step 2: Replace Y values by median for each group in X
+data <- data %>%
+  group_by(u) %>%
+  mutate(v = ifelse(n() > 1, median(v), v)) %>%
+  ungroup()
+
+plot(Emp.index$u,Emp.index$v)
+
+data <- as.data.frame(data)
+
+Emp.index <- data.frame(u = Empiric.df(data[,1], data[,1]),
+                        v = Empiric.df(data[,2], data[,2]))
+
+#V->U
+r12=gcmr(u ~ v, data=Emp.index, marginal = beta.marg(link="logit"),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er12=exp(r12$estimate[1] + Emp.index$v * r12$estimate[2])/
+  (1 + exp(r12$estimate[1] + Emp.index$v * r12$estimate[2]))
+
+vtou_rho2=var(Er12)/var(Emp.index$u)
+vtou_rho2
+#U->V
+r21=gcmr(v~u, data=Emp.index, marginal = beta.marg(link='logit'),
+         cormat = arma.cormat(0,0)) #GCMR beta regression
+
+Er21=exp(r21$estimate[1] + Emp.index$u * r21$estimate[2])/
+  (1 + exp(r21$estimate[1] + Emp.index$u * r21$estimate[2]))
+
+utov_rho2=var(Er21)/var(Emp.index$v)
+utov_rho2
+
+#mape
+mape1 <- mean(abs((Er21 - Emp.index$u) / Er21)) * 100
+mape1
+mape2 <- mean(abs((Er12 - Emp.index$v) / Er12)) * 100
+mape2
+
+####Jitter####
+# Fungsi untuk menambahkan noise hanya pada nilai yang tidak unik
+set.seed(123)
+data = data + runif(length(data), min = -0.015, max = 0.053)
+
+library(gcmr)
+
+# Jalankan fungsi
+par(mfrow=c(5,2))
+result_df_up <- process_lag_matrices(lag_matriks, lag_count = 8)
+
+result_df_ub <- process_lag_matrices(lag_matriks_ub, lag_count = 8)
+
+result_df_ut <- process_lag_matrices(lag_matriks_ut, lag_count = 8)
+
+result_df_us <- process_lag_matrices(lag_matriks_us, lag_count = 8)
+
+result_df_pb <- process_lag_matrices(lag_matriks_pb, lag_count = 8)
+
+result_df_pt <- process_lag_matrices(lag_matriks_pt, lag_count = 8)
+
+result_df_ps <- process_lag_matrices(lag_matriks_ps, lag_count = 8)
+
+result_df_bt <- process_lag_matrices(lag_matriks_bt, lag_count = 8)
+
+result_df_bs <- process_lag_matrices(lag_matriks_bs, lag_count = 8)
+
+result_df_ts <- process_lag_matrices(lag_matriks_ts, lag_count = 8)
+
+
+
+
+
+
+
+dim(jakut_lag0)
+dim(jakbar_lag0)
+
+
+library(gcmr)
+
+# Fungsi untuk memproses lag dan menghasilkan dataframe hasil
+process_lag_matrices <- function(lag_matriks, lag_count, min_noise = -0.015, max_noise = 0.053) {
+  # List untuk menyimpan hasil akhir
+  result_list <- list()
+  
+  # Tambahkan lag 0 khusus
+  data_lag_0 <- data.frame(
+    u = lag_matriks[[paste0("lag_x_to_y ", 0)]][, 1],
+    v = lag_matriks[[paste0("lag_x_to_y ", 0)]][, 2]
+  )
+  
+  # Tambahkan noise pada lag 0
+  data_lag_0 <- data_lag_0 + runif(nrow(data_lag_0) * ncol(data_lag_0), min = min_noise, max = max_noise)
+  
+  # Empirical Index untuk lag 0
+  Emp.index_lag_0 <- data.frame(
+    u = Empiric.df(data_lag_0[, 1], data_lag_0[, 1]),
+    v = Empiric.df(data_lag_0[, 2], data_lag_0[, 2])
+  )
+  
+  # GCMR Beta Regression untuk lag 0: v ~ u dan u ~ v
+  r12_lag_0 <- gcmr(v ~ u, data = Emp.index_lag_0, 
+                    marginal = beta.marg(link = "logit"), 
+                    cormat = arma.cormat(0, 0))
+  Er12_lag_0 <- exp(r12_lag_0$estimate[1] + Emp.index_lag_0$u * r12_lag_0$estimate[2]) /
+    (1 + exp(r12_lag_0$estimate[1] + Emp.index_lag_0$u * r12_lag_0$estimate[2]))
+  vtou_rho2_lag_0 <- var(Er12_lag_0) / var(Emp.index_lag_0$v)
+  
+  r21_lag_0 <- gcmr(u ~ v, data = Emp.index_lag_0, 
+                    marginal = beta.marg(link = "logit"), 
+                    cormat = arma.cormat(0, 0))
+  Er21_lag_0 <- exp(r21_lag_0$estimate[1] + Emp.index_lag_0$v * r21_lag_0$estimate[2]) /
+    (1 + exp(r21_lag_0$estimate[1] + Emp.index_lag_0$v * r21_lag_0$estimate[2]))
+  utov_rho2_lag_0 <- var(Er21_lag_0) / var(Emp.index_lag_0$u)
+  
+  # Simpan hasil untuk lag 0
+  result_list[[1]] <- data.frame(
+    Lag = 0,
+    vtou_rho2 = vtou_rho2_lag_0,
+    utov_rho2 = utov_rho2_lag_0
+  )
+  
+  # Proses untuk lag lainnya
+  for (i in 1:lag_count) {
+    # Ambil data untuk lag_x_to_y dan lag_y_to_x
+    data_x_to_y <- data.frame(
+      u = lag_matriks[[paste0("lag_x_to_y ", i)]][, 1],
+      v = lag_matriks[[paste0("lag_x_to_y ", i)]][, 2]
+    )
+    
+    data_y_to_x <- data.frame(
+      u = lag_matriks[[paste0("lag_y_to_x ", i)]][, 1],
+      v = lag_matriks[[paste0("lag_y_to_x ", i)]][, 2]
+    )
+    
+    # Tambahkan noise pada data
+    data_x_to_y <- data_x_to_y + runif(nrow(data_x_to_y) * ncol(data_x_to_y), min = min_noise, max = max_noise)
+    data_y_to_x <- data_y_to_x + runif(nrow(data_y_to_x) * ncol(data_y_to_x), min = min_noise, max = max_noise)
+    
+    # Empirical Index untuk lag_x_to_y (gunakan model u ~ v)
+    Emp.index_x_to_y <- data.frame(
+      u = Empiric.df(data_x_to_y[, 1], data_x_to_y[, 1]),
+      v = Empiric.df(data_x_to_y[, 2], data_x_to_y[, 2])
+    )
+    
+    # GCMR Beta Regression: v ~ u (untuk lag_x_to_y)
+    r12 <- gcmr(v ~ u, data = Emp.index_x_to_y, 
+                marginal = beta.marg(link = "logit"), 
+                cormat = arma.cormat(0, 0))
+    Er12 <- exp(r12$estimate[1] + Emp.index_x_to_y$u * r12$estimate[2]) /
+      (1 + exp(r12$estimate[1] + Emp.index_x_to_y$u * r12$estimate[2]))
+    vtou_rho2 <- var(Er12) / var(Emp.index_x_to_y$v)
+    
+    # Empirical Index untuk lag_y_to_x (gunakan model v ~ u)
+    Emp.index_y_to_x <- data.frame(
+      u = Empiric.df(data_y_to_x[, 1], data_y_to_x[, 1]),
+      v = Empiric.df(data_y_to_x[, 2], data_y_to_x[, 2])
+    )
+    
+    # GCMR Beta Regression: u ~ v (untuk lag_y_to_x)
+    r21 <- gcmr(u ~ v, data = Emp.index_y_to_x, 
+                marginal = beta.marg(link = "logit"), 
+                cormat = arma.cormat(0, 0))
+    Er21 <- exp(r21$estimate[1] + Emp.index_y_to_x$v * r21$estimate[2]) /
+      (1 + exp(r21$estimate[1] + Emp.index_y_to_x$v * r21$estimate[2]))
+    utov_rho2 <- var(Er21) / var(Emp.index_y_to_x$u)
+    
+    # Tambahkan hasil rho-squared ke list
+    result_list[[i + 1]] <- data.frame(
+      Lag = i,
+      vtou_rho2 = vtou_rho2,
+      utov_rho2 = utov_rho2
+    )
+  }
+  
+  # Gabungkan semua hasil menjadi satu dataframe
+  result_df <- do.call(rbind, result_list)
+  return(result_df)
+}
+
+par(mfrow=c(5,2))
+x1 <- c(0,1,2,3,4,5,6,7,8)
+y1 <- result_df_up$vtou_rho2
+
+x2 <- c(-8, -7,-6,-5,-4,-3,-2,-1, 0)
+y2 <- result_df_up[[ "utov_rho2" ]][nrow(result_df_up):1]
+
+plot(x1, y1, type = "b", col = "blue", pch = 16, ylim = range(c(y1, y2)), xlim = range(c(x1, x2)), 
+     ylab = "rho", xlab = "lag",main="North and Central")
+points(x2, y2, type = "b", col = "red", pch = 17)
+max_idx_y1 <- which.max(y1)  # Indeks nilai terbesar di y1
+text(x1[max_idx_y1], y1[max_idx_y1], labels = round(y1[max_idx_y1], 3), 
+     pos = 4, col = "blue")  # Label di atas titik dengan warna biru
+
+# Untuk y2
+max_idx_y2 <- which.max(y2)  # Indeks nilai terbesar di y2
+text(x2[max_idx_y2], y2[max_idx_y2], labels = round(y2[max_idx_y2], 3), 
+     pos = 2, col = "red")
+
+
+x1 <- c(0,1,2,3,4,5,6,7,8)
+y1 <- result_df_ub$vtou_rho2
+
+x2 <- c(-8, -7,-6,-5,-4,-3,-2,-1, 0)
+y2 <- result_df_ub[[ "utov_rho2" ]][nrow(result_df_ub):1]
+
+plot(x1, y1, type = "b", col = "blue", pch = 16, ylim = range(c(y1, y2)), xlim = range(c(x1, x2)), 
+     ylab = "rho", xlab = "lag",main="North and West")
+points(x2, y2, type = "b", col = "red", pch = 17)
+max_idx_y1 <- which.max(y1)  # Indeks nilai terbesar di y1
+text(x1[max_idx_y1], y1[max_idx_y1], labels = round(y1[max_idx_y1], 3), 
+     pos = 4, col = "blue")  # Label di atas titik dengan warna biru
+
+# Untuk y2
+max_idx_y2 <- which.max(y2)  # Indeks nilai terbesar di y2
+text(x2[max_idx_y2], y2[max_idx_y2], labels = round(y2[max_idx_y2], 3), 
+     pos = 2, col = "red")
+
+
+x1 <- c(0,1,2,3,4,5,6,7,8)
+y1 <- result_df_ut$vtou_rho2
+
+x2 <- c(-8, -7,-6,-5,-4,-3,-2,-1, 0)
+y2 <- result_df_ut[[ "utov_rho2" ]][nrow(result_df_ut):1]
+
+plot(x1, y1, type = "b", col = "blue", pch = 16, ylim = range(c(y1, y2)), xlim = range(c(x1, x2)), 
+     ylab = "rho", xlab = "lag",main="North and East")
+points(x2, y2, type = "b", col = "red", pch = 17)
+max_idx_y1 <- which.max(y1)  # Indeks nilai terbesar di y1
+text(x1[max_idx_y1], y1[max_idx_y1], labels = round(y1[max_idx_y1], 3), 
+     pos = 4, col = "blue")  # Label di atas titik dengan warna biru
+
+# Untuk y2
+max_idx_y2 <- which.max(y2)  # Indeks nilai terbesar di y2
+text(x2[max_idx_y2], y2[max_idx_y2], labels = round(y2[max_idx_y2], 3), 
+     pos = 2, col = "red")
+
+x1 <- c(0,1,2,3,4,5,6,7,8)
+y1 <- result_df_us$vtou_rho2
+
+x2 <- c(-8, -7,-6,-5,-4,-3,-2,-1, 0)
+y2 <- result_df_us[[ "utov_rho2" ]][nrow(result_df_us):1]
+
+plot(x1, y1, type = "b", col = "blue", pch = 16, ylim = range(c(y1, y2)), xlim = range(c(x1, x2)), 
+     ylab = "rho", xlab = "lag",main="North and South")
+points(x2, y2, type = "b", col = "red", pch = 17)
+max_idx_y1 <- which.max(y1)  # Indeks nilai terbesar di y1
+text(x1[max_idx_y1], y1[max_idx_y1], labels = round(y1[max_idx_y1], 3), 
+     pos = 4, col = "blue")  # Label di atas titik dengan warna biru
+
+# Untuk y2
+max_idx_y2 <- which.max(y2)  # Indeks nilai terbesar di y2
+text(x2[max_idx_y2], y2[max_idx_y2], labels = round(y2[max_idx_y2], 3), 
+     pos = 2, col = "red")
+
+x1 <- c(0,1,2,3,4,5,6,7,8)
+y1 <- result_df_pb$vtou_rho2
+
+x2 <- c(-8, -7,-6,-5,-4,-3,-2,-1, 0)
+y2 <- result_df_pb[[ "utov_rho2" ]][nrow(result_df_pb):1]
+
+plot(x1, y1, type = "b", col = "blue", pch = 16, ylim = range(c(y1, y2)), xlim = range(c(x1, x2)), 
+     ylab = "rho", xlab = "lag",main="Central and West")
+points(x2, y2, type = "b", col = "red", pch = 17)
+max_idx_y1 <- which.max(y1)  # Indeks nilai terbesar di y1
+text(x1[max_idx_y1], y1[max_idx_y1], labels = round(y1[max_idx_y1], 3), 
+     pos = 4, col = "blue")  # Label di atas titik dengan warna biru
+
+# Untuk y2
+max_idx_y2 <- which.max(y2)  # Indeks nilai terbesar di y2
+text(x2[max_idx_y2], y2[max_idx_y2], labels = round(y2[max_idx_y2], 3), 
+     pos = 2, col = "red")
+
+x1 <- c(0,1,2,3,4,5,6,7,8)
+y1 <- result_df_pt$vtou_rho2
+
+x2 <- c(-8, -7,-6,-5,-4,-3,-2,-1, 0)
+y2 <- result_df_pt[[ "utov_rho2" ]][nrow(result_df_pt):1]
+
+plot(x1, y1, type = "b", col = "blue", pch = 16, ylim = range(c(y1, y2)), xlim = range(c(x1, x2)), 
+     ylab = "rho", xlab = "lag",main="Central and East")
+points(x2, y2, type = "b", col = "red", pch = 17)
+max_idx_y1 <- which.max(y1)  # Indeks nilai terbesar di y1
+text(x1[max_idx_y1], y1[max_idx_y1], labels = round(y1[max_idx_y1], 3), 
+     pos = 4, col = "blue")  # Label di atas titik dengan warna biru
+
+# Untuk y2
+max_idx_y2 <- which.max(y2)  # Indeks nilai terbesar di y2
+text(x2[max_idx_y2], y2[max_idx_y2], labels = round(y2[max_idx_y2], 3), 
+     pos = 2, col = "red")
+
+x1 <- c(0,1,2,3,4,5,6,7,8)
+y1 <- result_df_ps$vtou_rho2
+
+x2 <- c(-8, -7,-6,-5,-4,-3,-2,-1, 0)
+y2 <- result_df_ps[[ "utov_rho2" ]][nrow(result_df_ps):1]
+
+plot(x1, y1, type = "b", col = "blue", pch = 16, ylim = range(c(y1, y2)), xlim = range(c(x1, x2)), 
+     ylab = "rho", xlab = "lag",main="Central and South")
+points(x2, y2, type = "b", col = "red", pch = 17)
+max_idx_y1 <- which.max(y1)  # Indeks nilai terbesar di y1
+text(x1[max_idx_y1], y1[max_idx_y1], labels = round(y1[max_idx_y1], 3), 
+     pos = 4, col = "blue")  # Label di atas titik dengan warna biru
+
+# Untuk y2
+max_idx_y2 <- which.max(y2)  # Indeks nilai terbesar di y2
+text(x2[max_idx_y2], y2[max_idx_y2], labels = round(y2[max_idx_y2], 3), 
+     pos = 2, col = "red")
+
+x1 <- c(0,1,2,3,4,5,6,7,8)
+y1 <- result_df_bt$vtou_rho2
+
+x2 <- c(-8, -7,-6,-5,-4,-3,-2,-1, 0)
+y2 <- result_df_bt[[ "utov_rho2" ]][nrow(result_df_bt):1]
+
+plot(x1, y1, type = "b", col = "blue", pch = 16, ylim = range(c(y1, y2)), xlim = range(c(x1, x2)), 
+     ylab = "rho", xlab = "lag",main="West and East")
+points(x2, y2, type = "b", col = "red", pch = 17)
+max_idx_y1 <- which.max(y1)  # Indeks nilai terbesar di y1
+text(x1[max_idx_y1], y1[max_idx_y1], labels = round(y1[max_idx_y1], 3), 
+     pos = 4, col = "blue")  # Label di atas titik dengan warna biru
+
+# Untuk y2
+max_idx_y2 <- which.max(y2)  # Indeks nilai terbesar di y2
+text(x2[max_idx_y2], y2[max_idx_y2], labels = round(y2[max_idx_y2], 3), 
+     pos = 2, col = "red")
+
+x1 <- c(0,1,2,3,4,5,6,7,8)
+y1 <- result_df_bs$vtou_rho2
+
+x2 <- c(-8, -7,-6,-5,-4,-3,-2,-1, 0)
+y2 <- result_df_bs[[ "utov_rho2" ]][nrow(result_df_bs):1]
+
+plot(x1, y1, type = "b", col = "blue", pch = 16, ylim = range(c(y1, y2)), xlim = range(c(x1, x2)), 
+     ylab = "rho", xlab = "lag",main="West and South")
+points(x2, y2, type = "b", col = "red", pch = 17)
+max_idx_y1 <- which.max(y1)  # Indeks nilai terbesar di y1
+text(x1[max_idx_y1], y1[max_idx_y1], labels = round(y1[max_idx_y1], 3), 
+     pos = 4, col = "blue")  # Label di atas titik dengan warna biru
+
+# Untuk y2
+max_idx_y2 <- which.max(y2)  # Indeks nilai terbesar di y2
+text(x2[max_idx_y2], y2[max_idx_y2], labels = round(y2[max_idx_y2], 3), 
+     pos = 2, col = "red")
+
+x1 <- c(0,1,2,3,4,5,6,7,8)
+y1 <- result_df_ts$vtou_rho2
+
+x2 <- c(-8, -7,-6,-5,-4,-3,-2,-1, 0)
+y2 <- result_df_ts[[ "utov_rho2" ]][nrow(result_df_ts):1]
+
+plot(x1, y1, type = "b", col = "blue", pch = 16, ylim = range(c(y1, y2)), xlim = range(c(x1, x2)), 
+     ylab = "rho", xlab = "lag",main="East and South")
+points(x2, y2, type = "b", col = "red", pch = 17)
+max_idx_y1 <- which.max(y1)  # Indeks nilai terbesar di y1
+text(x1[max_idx_y1], y1[max_idx_y1], labels = round(y1[max_idx_y1], 3), 
+     pos = 4, col = "blue")  # Label di atas titik dengan warna biru
+
+# Untuk y2
+max_idx_y2 <- which.max(y2)  # Indeks nilai terbesar di y2
+text(x2[max_idx_y2], y2[max_idx_y2], labels = round(y2[max_idx_y2], 3), 
+     pos = 2, col = "red")
+
+
+
+
+
+####MAPS####
+install.packages(c("sf", "ggspatial", "ggforce"))
+library(sf)
+library(ggplot2)
+library(ggspatial)
+library(ggforce)
+
+
+library(sf)
+
+# Contoh: Gabungkan shapefile per kota
+jakarta_barat <- st_read("D://Tugas Galih SMT 6//Bismillah BRIN//Data//JakartaMap//id-jk-jakbar.geojson")
+jakarta_pusat <- st_read("D://Tugas Galih SMT 6//Bismillah BRIN//Data//JakartaMap//id-jk-jakpus.geojson")
+jakarta_utara <- st_read("D://Tugas Galih SMT 6//Bismillah BRIN//Data//JakartaMap//id-jk-jakut.geojson")
+jakarta_timur <- st_read("D://Tugas Galih SMT 6//Bismillah BRIN//Data//JakartaMap//id-jk-jaktim.geojson")
+jakarta_selatan <- st_read("D://Tugas Galih SMT 6//Bismillah BRIN//Data//JakartaMap//id-jk-jaksel.geojson")
+
+# Gabungkan semua kota menjadi satu peta
+jakarta_map <- rbind(jakarta_barat, jakarta_pusat, jakarta_utara, jakarta_timur, jakarta_selatan)
+jakarta_map$nama_kota <- c("Jakarta Barat", "Jakarta Pusat", "Jakarta Utara", "Jakarta Timur", "Jakarta Selatan")
+
+
+
+library(dplyr)
+
+View(jakarta_map)
+# Tambahkan kolom kota berdasarkan kecamatan
+jakarta_map <- jakarta_map %>%
+  mutate(kota = case_when(
+    name %in% c("Cengkareng", "Grogol Petamburan", "Kalideres", "Kebon Jeruk", 
+                "Kembangan", "Palmerah", "Taman Sari", "Tambora") ~ "Jakarta Barat",
+    name %in% c("Gambir", "Tanah Abang", "Menteng", "Senen", 
+                "Cempaka Putih", "Johar Baru", "Kemayoran", "Sawah Besar") ~ "Jakarta Pusat",
+    name %in% c("Cakung", "Duren Sawit", "Jatinegara", "Kramat Jati", 
+                "Makasar", "Matraman", "Pasar Rebo", "Pulo Gadung","Ciracas","Cipayung") ~ "Jakarta Timur",
+    name %in% c("Cilandak", "Jagakarsa", "Kebayoran Baru", "Kebayoran Lama", 
+                "Mampang Prapatan", "Pancoran", "Pasar Minggu", "Tebet","Setiabudi","Pesanggrahan") ~ "Jakarta Selatan",
+    name %in% c("Cilincing", "Kelapa Gading", "Koja", "Pademangan", 
+                "Penjaringan", "Tanjung Priok") ~ "Jakarta Utara",
+    TRUE ~ "Lainnya"
+  ))
+
+
+# Gabungkan kecamatan menjadi kota
+jakarta_kota <- jakarta_map %>%
+  group_by(kota) %>%
+  summarise(geometry = st_union(geometry)) %>%
+  st_as_sf()
+jakarta_kota
+df <- jakarta_kota %>%
+  mutate(city = case_when(
+    kota == "Jakarta Barat"   ~ "West Jakarta",
+    kota == "Jakarta Pusat"   ~ "Central Jakarta",
+    kota == "Jakarta Selatan" ~ "South Jakarta",
+    kota == "Jakarta Timur"   ~ "East Jakarta",
+    kota == "Jakarta Utara"   ~ "North Jakarta",
+    TRUE                      ~ kota  # Default jika tidak ada yang cocok
+  ))
+df
+
+
+print(df)
+
+# Visualisasi peta dasar per kota
+ggplot(data = df) +
+  geom_sf(aes(fill = city), color = "black") +
+  labs(title = "Directional Dependency Between Region in Jakarta",
+       fill = "Region") +
+  theme_minimal()
+
+
+# Hitung centroid setiap kota
+jakarta_kota$centroid <- st_centroid(jakarta_kota$geometry)
+coords <- st_coordinates(jakarta_kota$centroid)
+jakarta_kota <- cbind(jakarta_kota, coords)
+
+# Buat data korelasi
+korelasi <- data.frame(
+  kota_asal = c("Jakarta Utara", "Jakarta Pusat","Jakarta Barat","Jakarta Timur","Jakarta Selatan"),
+  kota_tujuan = c("Jakarta Pusat", "Jakarta Utara","Jakarta Selatan","Jakarta Selatan","Jakarta Timur"),
+  korelasi = c(0.827, 0.823,0.745,0.824, 0.828)
+)
+
+# Buat data korelasi
+korelasi <- data.frame(
+  kota_asal = c("Jakarta Utara", "Jakarta Pusat","Jakarta Timur","Jakarta Timur","Jakarta Selatan"),
+  kota_tujuan = c("Jakarta Pusat", "Jakarta Utara","Jakarta Barat","Jakarta Selatan","Jakarta Timur"),
+  korelasi = c(0.827, 0.823,0.76,0.824, 0.828)
+)
+
+
+
+
+# Gabungkan koordinat asal dan tujuan
+korelasi <- merge(korelasi, jakarta_kota[, c("kota", "X", "Y")], 
+                  by.x = "kota_asal", by.y = "kota")
+colnames(korelasi)[4:5] <- c("x_asal", "y_asal")
+
+korelasi <- merge(korelasi, jakarta_kota[, c("kota", "X", "Y")], 
+                  by.x = "kota_tujuan", by.y = "kota")
+colnames(korelasi)[6:7] <- c("x_tujuan", "y_tujuan")
+
+
+
+korelasi
+
+library(sf)
+
+# Pastikan data geometrinya dalam format sf
+korelasi <- korelasi %>%
+  mutate(
+    centroid_tujuan = st_centroid(geometry.y),  # Hitung centroid tujuan
+    coords_tujuan = st_coordinates(centroid_tujuan)  # Ambil koordinat tujuan
+  )
+
+# Pisahkan koordinat menjadi kolom x_tujuan dan y_tujuan
+korelasi <- korelasi %>%
+  mutate(
+    x_tujuan = coords_tujuan[, 1],
+    y_tujuan = coords_tujuan[, 2]
+  )
+
+str(korelasi)
+
+ggplot(data = jakarta_kota) +
+  geom_sf(aes(fill = kota), color = "black", alpha = 0.5) +  # Peta kota dengan fill
+  geom_curve(data = korelasi, aes(
+    x = x_asal, y = y_asal, xend = x_tujuan, yend = y_tujuan
+  ), curvature = 0.2, arrow = arrow(type = "open", length = unit(0.2, "cm")), color = "blue") +  # Panah
+  geom_text(data = korelasi, aes(
+    x = (x_asal + x_tujuan) / 2,  # Posisi label di tengah panah
+    y = (y_asal + y_tujuan) / 2,  # Posisi label di tengah panah
+    label = korelasi
+  ), size = 4, color = "red") +  # Label nilai korelasi
+  labs(
+    title = "Korelasi Berarah Kasus Demam Berdarah Antar Kota di Jakarta",
+    fill = "Nama Wilayah",  # Nama untuk legenda
+    x = "Longitude",  # Nama sumbu X
+    y = "Latitude"    # Nama sumbu Y
+  ) +
+  theme_minimal()
+
+
+jakarta_kota
+
+korelasi$label_offset_x <- ifelse(korelasi$x_asal < korelasi$x_tujuan, 0.01, -0.01)
+korelasi$label_offset_y <- ifelse(korelasi$y_asal < korelasi$y_tujuan, 0.01, -0.01)
+
+
+ggplot(data = jakarta_kota) +
+  geom_sf(aes(fill = kota), color = "black", alpha = 0.5) +  # Peta kota dengan fill
+  geom_curve(data = korelasi, aes(
+    x = x_asal, y = y_asal,  # Geser titik asal
+    xend = x_tujuan, yend = y_tujuan  # Geser titik tujuan
+  ), curvature = 0.3, arrow = arrow(type = "closed", length = unit(0.5, "cm")), color = "blue") +  # Panah
+  geom_text(data = korelasi, aes(
+    x = (x_asal + x_tujuan) / 2+label_offset_x,  # Posisi label di tengah panah
+    y = (y_asal + y_tujuan) / 2+label_offset_y,  # Posisi label di tengah panah
+    label = korelasi
+  ), size = 4, color = "red") +  # Label nilai korelasi
+  labs(
+    title = "Korelasi Berarah Kasus Demam Berdarah Antar Kota di Jakarta",
+    fill = "Nama Wilayah",
+    x = "Longitude",
+    y = "Latitude"
+  ) +
+  theme_minimal()
+
+
+
+korelasi <- korelasi %>%
+  mutate(
+    x_asal_adjusted = x_asal + 0.05,
+    y_asal_adjusted = y_asal + 0.05,
+    x_tujuan_adjusted = x_tujuan - 0.05,
+    y_tujuan_adjusted = y_tujuan - 0.05
+  )
+
+
+korelasi$x_asal <- korelasi$x_asal + c(0.001, -0.001)
+korelasi$x_tujuan <- korelasi$x_tujuan + c(-0.001, 0.001)
+korelasi$y_asal <- korelasi$y_asal + c(0.001, -0.001)
+korelasi$y_tujuan <- korelasi$y_tujuan + c(-0.001, 0.001)
+
+
+
+library(ggplot2)
+library(plotly)
+
+# Buat plot awal
+p <- ggplot(data = jakarta_kota) +
+  geom_sf(aes(fill = kota), color = "black", alpha = 0.5) +
+  labs(
+    title = "Korelasi Berarah Kasus Demam Berdarah Antar Kota di Jakarta",
+    fill = "Nama Wilayah",
+    x = "Longitude",
+    y = "Latitude"
+  ) +
+  theme_minimal()
+
+# Tambahkan interaktivitas
+p_interaktif <- ggplotly(p) %>%
+  layout(
+    annotations = list(
+      list(
+        text = "Hover untuk melihat panah",
+        x = ,
+        y = 1.05,
+        showarrow = FALSE,
+        xref = "paper",
+        yref = "paper"
+      )
+    )
+  )
+
+p_interaktif
+
+
+korelasi
+
+
+
+
+library(ggplot2)
+library(dplyr)
+
+# Misalkan data1 dan data2 adalah dua dataset yang ingin digabungkan
+# Gabungkan kedua dataset berdasarkan 'tanggal'
+merged_data <- merge(data, Jakpus, by = "Tanggal", all = TRUE)
+
+# Fungsi untuk visualisasi data dengan dua variabel dari dataset berbeda
+plot_with_additional_variable <- function(data, variable1, variable2) {
+  # Tambahkan kolom untuk menandai data yang missing untuk variabel pertama
+  data$missing_var1 <- ifelse(is.na(data[[variable1]]), "Missing", "Not Missing")
+  
+  # Tambahkan kolom untuk menandai data yang missing untuk variabel kedua
+  data$missing_var2 <- ifelse(is.na(data[[variable2]]), "Missing", "Not Missing")
+  
+  # Buat plot menggunakan ggplot2
+  ggplot(data) +
+    # Garis untuk variabel pertama (warna berdasarkan status missing)
+    geom_line(aes(x = tanggal, y = data[[variable1]], color = missing_var1), size = 1, alpha = 0.8) +
+    geom_point(aes(x = tanggal, y = data[[variable1]], color = missing_var1), size = 2) +
+    
+    # Garis untuk variabel kedua (warna merah)
+    geom_line(aes(x = tanggal, y = data[[variable2]]), color = "red", size = 1, alpha = 0.8) +
+    
+    # Kustomisasi warna legenda untuk variabel pertama
+    scale_color_manual(values = c("Not Missing" = "blue", "Missing" = "purple")) +
+    
+    # Judul dan label
+    labs(
+      title = paste("Comparison of", variable1, "and", variable2),
+      x = "Tanggal",
+      y = "Value",
+      color = "Data Status"
+    ) +
+    theme_minimal() +
+    theme(legend.position = "top")
+}
+
+# Contoh penggunaan untuk variabel 'Temperature' (variable1) dan 'Rainfall' (variable2)
+plot_with_additional_variable(merged_data, "RR.x", "RR.y")
+
+
+library(ggplot2)
+library(dplyr)
+
+# Pastikan kolom variabel numerik
+merged_data <- merged_data %>%
+  mutate(
+    RR.x = as.numeric(RR.x),
+    RR.y = as.numeric(RR.y)
+  )
+
+# Fungsi untuk visualisasi data dengan dua variabel dari dataset berbeda
+plot_with_additional_variable <- function(data, variable1, variable2) {
+  # Tambahkan kolom untuk menandai data yang missing untuk variabel pertama
+  data$missing_var1 <- ifelse(is.na(data[[variable1]]), "Missing", "Not Missing")
+  
+  # Tambahkan kolom untuk menandai data yang missing untuk variabel kedua
+  data$missing_var2 <- ifelse(is.na(data[[variable2]]), "Missing", "Not Missing")
+  
+  # Buat plot menggunakan ggplot2
+  ggplot(data) +
+    # Garis untuk variabel pertama (warna berdasarkan status missing)
+    geom_line(aes(x = tanggal, y = .data[[variable1]], color = missing_var1), size = 1, alpha = 0.8) +
+    geom_point(aes(x = tanggal, y = .data[[variable1]], color = missing_var1), size = 2) +
+    
+    # Garis untuk variabel kedua (warna merah)
+    geom_line(aes(x = tanggal, y = .data[[variable2]]), color = "red", size = 1, alpha = 0.8) +
+    
+    # Kustomisasi warna legenda untuk variabel pertama
+    scale_color_manual(values = c("Not Missing" = "blue", "Missing" = "purple")) +
+    
+    # Judul dan label
+    labs(
+      title = paste("Comparison of", variable1, "and", variable2),
+      x = "Tanggal",
+      y = "Value",
+      color = "Data Status"
+    ) +
+    theme_minimal() +
+    theme(legend.position = "top") +
+    scale_y_continuous()  # Menjamin skala kontinu pada sumbu Y
+}
+
+# Contoh penggunaan untuk variabel 'RR.x' dan 'RR.y'
+plot_with_additional_variable(merged_data, "RR.x", "RR.y")
+
+####ACF####
+
+kasus_jakpus=jakpus_lag0$Jumlah.Kasus.DBD
+kasus_jakut=jakut_lag0$Jumlah.kasus.dbd
+kasus_jaktim=jaktim_lag0$Jumlah.Kasus.DBD
+kasus_jakbar=jakbar_lag0$Jumlah.Kasus.DBD
+kasus_jaksel=jaksel_lag0$Jumlah.Kasus.DBD
+
+
+
+par(mfrow = c(2, 3), mar = c(4, 4, 4, 2))  # Atur layout plot
+
+# Hitung ACF untuk masing-masing wilayah
+acf_jakpus <- acf(kasus_jakpus, lag.max = 52, plot = FALSE)
+acf_jakut <- acf(kasus_jakut, lag.max = 52, plot = FALSE)
+acf_jaktim <- acf(kasus_jaktim, lag.max = 52, plot = FALSE)
+acf_jakbar <- acf(kasus_jakbar, lag.max = 52, plot = FALSE)
+acf_jaksel <- acf(kasus_jaksel, lag.max = 52, plot = FALSE)
+
+# Plot semua ACF dengan judul diperbesar
+plot(acf_jakpus, main = "ACF Central Jakarta", cex.main = 3, cex.lab = 1.5, cex.axis = 1.2)
+plot(acf_jakut, main = "ACF North Jakarta", cex.main = 3, cex.lab = 1.5, cex.axis = 1.2)
+plot(acf_jaktim, main = "ACF East Jakarta", cex.main = 3, cex.lab = 1.5, cex.axis = 1.2)
+plot(acf_jakbar, main = "ACF West Jakarta", cex.main = 3, cex.lab = 1.5, cex.axis = 1.2)
+plot(acf_jaksel, main = "ACF South Jakarta", cex.main = 3, cex.lab = 1.5, cex.axis = 1.2)
